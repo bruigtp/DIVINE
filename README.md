@@ -12,7 +12,7 @@ You can install the development version of DIVINE from [GitHub](https://github.c
 
 ``` r
 # install.packages("pak")
-pak::pak("jcarmezim/DIVINE")
+pak::pak("bruigtp/DIVINE")
 ```
 
 ## Example
