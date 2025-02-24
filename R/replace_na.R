@@ -1,11 +1,11 @@
 #' Replace Missing Values
 #'
-#' This function replaces missing values (NA) in a dataset with a specified value 
+#' This function replaces missing values (NA) in a dataset with a specified value
 #' or method (such as mean, median, or a custom value). The replacement is performed
 #' column-wise, allowing for both numeric and character columns to be processed.
 #'
 #' @param data A data frame. The dataset in which missing values should be replaced.
-#' @param replace_with A character string or a numeric value. Specifies the method or value 
+#' @param replace_with A character string or a numeric value. Specifies the method or value
 #'   used to replace missing values. Options include:
 #'   \itemize{
 #'     \item `"mean"`: Replace with the column's mean value (ignoring NA).
@@ -15,16 +15,16 @@
 #'   }
 #'   Defaults to `"mean"`.
 #' @return A data frame with missing values replaced according to the specified method.
-#' 
+#'
 #' @details
-#' This function replaces missing values (`NA`) in a data frame with a specified method. 
+#' This function replaces missing values (`NA`) in a data frame with a specified method.
 #' The `replace_with` parameter can be:
 #' - `"mean"` or `"median"` to replace with the mean or median (only for numeric columns).
-#' - A numeric value, in which case the function replaces all NAs in numeric columns with 
+#' - A numeric value, in which case the function replaces all NAs in numeric columns with
 #'   that value.
 #' - `"mode"` to replace missing values with the most frequent value in character columns.
 #'
-#' If you choose `"mode"` for character columns, it will replace the missing values with the 
+#' If you choose `"mode"` for character columns, it will replace the missing values with the
 #' most frequent non-missing value in the column.
 #'
 #' @examples
@@ -43,19 +43,19 @@
 #'
 #' @export
 clean_missing <- function(data, replace_with = "mean") {
-  
+
   # Validate the replace_with parameter
   if (!(replace_with %in% c("mean", "median", "mode") || is.numeric(replace_with))) {
     stop("Invalid 'replace_with' value. Choose from 'mean', 'median', 'mode', or a numeric value.")
   }
-  
+
   # Function to calculate mode (for character columns)
   mode_value <- function(x) {
     uniq_x <- unique(x[!is.na(x)])
     uniq_x[which.max(tabulate(match(x, uniq_x)))]
   }
-  
-  data <- data |> 
+
+  data <- data |>
     dplyr::mutate(across(
       .fns = ~ ifelse(is.na(.),
                       # Replace based on method or custom value
@@ -69,6 +69,6 @@ clean_missing <- function(data, replace_with = "mean") {
                       .
       )
     ))
-  
+
   return(data)
 }

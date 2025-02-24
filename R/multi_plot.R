@@ -1,6 +1,6 @@
 #' Plot Variables from Datasets
 #'
-#' This function can generate histograms, density plots, boxplots, bar plots, or spider (radar) plots 
+#' This function can generate histograms, density plots, boxplots, bar plots, or spider (radar) plots
 #' depending on the types of variables selected.
 #'
 #' @param data A data frame containing the dataset to plot.
@@ -23,18 +23,18 @@
 #' multi_plot(data, x_var = "cyl", y_var = "mpg", plot_type = "boxplot", fill_color = "green", title = "Boxplot of MPG by Cylinders", group = "gear")
 #' multi_plot(data, radar_var = c("mpg", "hp", "wt", "qsec"), plot_type = "spider", radar_color = c("blue", "lightblue"))
 #' @export
-multi_plot <- function(data, x_var = NULL, y_var = NULL, plot_type = "histogram", 
+multi_plot <- function(data, x_var = NULL, y_var = NULL, plot_type = "histogram",
                        fill_color = "blue", bin_width = NULL, group = NULL,
                        title = NULL, x_lab = NULL, y_lab = NULL, facet_var = NULL,
                        radar_var = NULL, radar_color = c("blue", "red"),
                        theme_custom = ggplot2::theme_minimal()) {
-  
+
   # Check for valid plot types
   valid_plot_types <- c("histogram", "density", "boxplot", "barplot", "spider")
   if (!plot_type %in% valid_plot_types) {
     stop("Invalid plot_type. Choose from 'histogram', 'density', 'boxplot', 'barplot', or 'spider'.")
   }
-  
+
   # Ensure x_var and y_var are columns in the data when necessary
   if (!is.null(x_var) && !(x_var %in% names(data))) {
     stop(paste("The variable", x_var, "is not in the dataset."))
@@ -45,7 +45,7 @@ multi_plot <- function(data, x_var = NULL, y_var = NULL, plot_type = "histogram"
   if (!is.null(group) && !(group %in% names(data))) {
     stop(paste("The grouping variable", group, "is not in the dataset."))
   }
-  
+
   # Generate plots based on the plot type
   if (plot_type == "histogram") {
     binwidth_value <- if (is.null(bin_width)) diff(range(data[[x_var]], na.rm = TRUE)) / 30 else bin_width
@@ -57,7 +57,7 @@ multi_plot <- function(data, x_var = NULL, y_var = NULL, plot_type = "histogram"
       p <- p + ggplot2::facet_wrap(as.formula(paste("~", facet_var)))
     }
     print(p)
-    
+
   } else if (plot_type == "density") {
     p <- ggplot2::ggplot(data, ggplot2::aes_string(x = x_var, fill = group)) +
       ggplot2::geom_density(alpha = 0.7) +
@@ -67,7 +67,7 @@ multi_plot <- function(data, x_var = NULL, y_var = NULL, plot_type = "histogram"
       p <- p + ggplot2::facet_wrap(as.formula(paste("~", facet_var)))
     }
     print(p)
-    
+
   } else if (plot_type == "boxplot") {
     if (is.null(y_var)) stop("For boxplot, 'y_var' must be provided.")
     p <- ggplot2::ggplot(data, ggplot2::aes_string(x = x_var, y = y_var, fill = group, group = group)) +
@@ -78,7 +78,7 @@ multi_plot <- function(data, x_var = NULL, y_var = NULL, plot_type = "histogram"
       p <- p + ggplot2::facet_wrap(as.formula(paste("~", facet_var)))
     }
     print(p)
-    
+
   } else if (plot_type == "barplot") {
     p <- ggplot2::ggplot(data, ggplot2::aes_string(x = x_var, fill = group)) +
       ggplot2::geom_bar(color = "black", alpha = 0.7, position = "dodge") +
@@ -88,21 +88,21 @@ multi_plot <- function(data, x_var = NULL, y_var = NULL, plot_type = "histogram"
       p <- p + ggplot2::facet_wrap(as.formula(paste("~", facet_var)))
     }
     print(p)
-    
+
   } else if (plot_type == "spider") {
     if (is.null(radar_var)) stop("For spider plot, 'radar_var' must be provided.")
     if (!all(sapply(data[radar_var], is.numeric))) {
       stop("All variables in 'radar_var' must be numeric for a radar plot.")
     }
-    
+
     # Prepare and scale radar data
     radar_data <- data[, radar_var, drop = FALSE]
     radar_data <- radar_data[complete.cases(radar_data), ]
-    
+
     radar_data_scaled <- as.data.frame(lapply(radar_data, function(x) {
       (x - min(x, na.rm = TRUE)) / (max(x, na.rm = TRUE) - min(x, na.rm = TRUE))
     }))
-    
+
     radar_data_scaled <- rbind(rep(1, ncol(radar_data_scaled)),  # Max values
                                rep(0, ncol(radar_data_scaled)),  # Min values
                                colMeans(radar_data_scaled))     # Average values for a single line

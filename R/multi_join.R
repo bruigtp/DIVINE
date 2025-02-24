@@ -17,49 +17,49 @@
 #' @export
 multi_join <- function(datasets, key = "record_id", join_type = "left") {
   # Validate that datasets is a list of data frames
-  if (!is.list(datasets) | !all(sapply(datasets, is.data.frame) | sapply(datasets, is_tibble))) {
+  if (!is.list(datasets) | !all(sapply(datasets, is.data.frame) | sapply(datasets, tibble::is_tibble))) {
     stop("The 'datasets' parameter must be a list of data frames.")
   }
-  
+
   # Check if there is more than one dataframe specified
   if (length(datasets) == 1) {
     stop("Please specify more than one dataset to join.")
   }
-  
+
   # Check if the key exists in all datasets
   if (!all(sapply(datasets, function(df) key %in% names(df)))) {
     stop(paste("The key column", key, "must exist in all datasets."))
   }
-  
+
   # Validate the join type
   valid_join_types <- c("left", "right", "inner", "full")
   if (!(join_type %in% valid_join_types)) {
     stop(paste("Invalid join_type. Choose one of:", paste(valid_join_types, collapse = ", ")))
   }
-  
+
   # Select the appropriate join function
   join_fun <- switch(join_type,
                      left = dplyr::left_join,
                      right = dplyr::right_join,
                      inner = dplyr::inner_join,
                      full = dplyr::full_join)
-  
+
   # Perform the joins sequentially using Reduce
   result <- Reduce(function(x, y) {
     # Join each pair of data frames using the specified join function
     join_fun(x, y, by = key)
   }, datasets)
-  
+
   return(result)
 }
 
-# Example data frames
-data1 <- data.frame(id = 1:3, x = c("A", "B", "C"))
-data2 <- data.frame(id = 2:4, y = c("D", "E", "F"))
-data3 <- data.frame(id = 3:5, z = c("G", "H", "I"))
-
-# Perform left join on these data frames by the 'id' column
-multi_join(list(data1, data2, data3), key = "id", join_type = "left")
-
-# Perform inner join on the same data frames
-multi_join(list(analytics, symptoms), join_type = "left")
+# # Example data frames
+# data1 <- data.frame(id = 1:3, x = c("A", "B", "C"))
+# data2 <- data.frame(id = 2:4, y = c("D", "E", "F"))
+# data3 <- data.frame(id = 3:5, z = c("G", "H", "I"))
+#
+# # Perform left join on these data frames by the 'id' column
+# multi_join(list(data1, data2, data3), key = "id", join_type = "left")
+#
+# # Perform inner join on the same data frames
+# multi_join(list(analytics, symptoms), join_type = "left")

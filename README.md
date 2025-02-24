@@ -1,26 +1,36 @@
-
-# DIVINE
+# DIVINE <img src="man/figures/logo.png" align="right" height="120" alt="" />
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/bruigtp/DIVINE/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/bruigtp/DIVINE/actions/workflows/R-CMD-check.yaml) &#160;&#160;
 <!-- badges: end -->
 
 The goal of DIVINE is to ...
 
 ## Installation
 
-You can install the development version of DIVINE from [GitHub](https://github.com/) with:
+The *development* version can be installed from [GitHub](https://github.com/bruigtp/DIVINE) with:
 
 ``` r
 # install.packages("pak")
-pak::pak("jcarmezim/DIVINE")
+pak::pak("bruigtp/DIVINE")
 ```
 
-## Example
+## Getting help
 
-This is a basic example which shows you how to solve a common problem:
+If you encounter a clear bug, please file an issue with a minimal
+reproducible example on
+[GitHub](https://github.com/bruigtp/DIVINE/issues).
 
-``` r
-library(DIVINE)
-## basic example code
-```
+## About
 
+Package: DIVINE
+
+Authors: Natàlia Pallarès, João Carmezim, Cristian Tebé.
+
+Maintainer: João Carmezim
+
+License: GPL (>= 3)
+
+Encoding: UTF-8
+
+Depends: R (>= 4.1.0)

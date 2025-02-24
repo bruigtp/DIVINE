@@ -73,4 +73,4 @@ export_data <- function(data = NULL, format = "xlsx", path = NULL) {
   message("Data successfully exported to ", path)
 }
 
-export_data(analytics, format = "dta", path = r"(I:\CTebe\2_Projectes\2024_06DIVINE_package\datos.dta)")
+# export_data(analytics, format = "dta", path = r"(I:\CTebe\2_Projectes\2024_06DIVINE_package\datos.dta)")

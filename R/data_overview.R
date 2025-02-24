@@ -1,6 +1,6 @@
 #' Data Overview Function
 #'
-#' This function provides a comprehensive overview of a data frame, including its 
+#' This function provides a comprehensive overview of a data frame, including its
 #' dimensions, variable types, missing values count and a preview of the first few rows.
 #'
 #' @param data A data frame. The dataset for which you want an overview.
@@ -13,11 +13,11 @@
 #'   \item{preview}{A data frame showing the first `preview_rows` rows of the dataset.}
 #'
 #' @details
-#' The function is useful for quickly inspecting the structure of a data frame and 
-#' identifying any missing values or general characteristics of the data. It also allows 
+#' The function is useful for quickly inspecting the structure of a data frame and
+#' identifying any missing values or general characteristics of the data. It also allows
 #' users to customize how many rows they want to preview from the dataset.
 #'
-#' The summary statistics are calculated only for numeric variables and include basic 
+#' The summary statistics are calculated only for numeric variables and include basic
 #' statistics like minimum, maximum, mean, median, and the count of missing values (NA).
 #'
 #' @examples
@@ -36,17 +36,17 @@
 #'
 #' @export
 data_overview <- function(data, preview_rows = 6) {
-  
+
   # Data with no rows
   if (nrow(data) == 0) {
     return("The data frame has no rows.")
   }
-  
+
   # Data with no columns
   if (ncol(data) == 0) {
     return("The data frame has no columns.")
   }
-  
+
   # Overview of the data
   overview <- list(
     # Dimensions
@@ -58,6 +58,6 @@ data_overview <- function(data, preview_rows = 6) {
     # Preview
     preview = head(data, n = preview_rows)
   )
-  
+
   return(overview)
 }
