@@ -72,8 +72,5 @@ export_data <- function(data = NULL, format = "xlsx", path = NULL) {
   # Final message
   message("Data successfully exported to ", path)
 }
-<<<<<<< HEAD
 
 # export_data(analytics, format = "dta", path = r"(I:\CTebe\2_Projectes\2024_06DIVINE_package\datos.dta)")
-=======
->>>>>>> 833540e6f2a467bc56f75f85a53c51525e4b425f

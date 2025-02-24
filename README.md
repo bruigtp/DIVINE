@@ -1,4 +1,4 @@
-# DIVINE <img src="man/figures/logo.png" align="right" height="120" alt="" />
+# DIVINE <img src="man/figures/logo.png" align="right" width="250" />
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/bruigtp/DIVINE/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/bruigtp/DIVINE/actions/workflows/R-CMD-check.yaml) &#160;&#160;
