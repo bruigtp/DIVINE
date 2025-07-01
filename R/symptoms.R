@@ -12,7 +12,7 @@
 #'   \item{record_id:}{Identifier of each record. This information does not match the real data.}
 #'   \item{covid_wave:}{A factor with levels `Wave 1`, `Wave 2`, `Wave 3`, and `Wave 5`. COVID-19 wave.}
 #'   \item{center:}{A factor with levels `Hospital A`, `Hospital B`, `Hospital C`, `Hospital D`, and             `Hospital E`. Center of admission}
-#'   \item{symptom_days:}{Days from symptoms onset to hospitalization}
+#'   \item{symptoms_days:}{Days from symptoms onset to hospitalization}
 #'   \item{rhinorrhea:}{A factor with levels `No` and `Yes`. Rhinorrhea}
 #'   \item{anosmia:}{A factor with levels `No` and `Yes`. Anosmia}
 #'   \item{ageusia:}{A factor with levels `No` and `Yes`. Ageusia}

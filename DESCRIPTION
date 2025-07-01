@@ -25,6 +25,7 @@ Imports:
     gtsummary,
     haven,
     openxlsx,
+    plotly,
     purrr,
     rlang,
     scales,

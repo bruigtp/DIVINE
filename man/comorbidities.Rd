@@ -15,7 +15,7 @@ A data frame with 5813 rows and 37 columns
 \item{barthel_score:}{Punctuation in the Barthel scale used to measure performance in activities of daily living}
 \item{weight:}{Weight (kg)}
 \item{height:}{Height (cm)}
-\item{body mass index:}{Body mass index computed as \eqn{\frac{\mbox{weight (kg)}}{\mbox{height (m)}^2}}}
+\item{body_mass_index:}{Body mass index computed as \eqn{\frac{\mbox{weight (kg)}}{\mbox{height (m)}^2}}}
 \item{dm:}{A factor with levels \code{No} and \code{Yes}. Diabetes mellitus Type 2}
 \item{type_dm:}{A factor with levels \verb{With target organ involvement} and \verb{Without complications}. For patients with diabetes mellitus type 2, type of disease}
 \item{chronic_lung_disease:}{A factor with levels \code{No} and \code{Yes}. Chronic lung disease (including COPD, asthma and obstructive sleep apnea, among others)}

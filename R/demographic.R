@@ -14,7 +14,6 @@
 #'   \item{center:}{A factor with levels `Hospital A`, `Hospital B`, `Hospital C`, `Hospital D`, and `Hospital E`. Center of admission}
 #'   \item{sex:}{A factor with levels `Male` and `Female`. Sex at birth}
 #'   \item{age:}{Age at hospital admission}
-#'   \item{race:}{A factor with levels `Asian`, `Caucasian`, `Latina`, `Black`, and `Others`. Race}
 #'   \item{smoker:}{A factor with levels `Ex-smoker`, `No` and `Yes`. Smoking status}
 #'   \item{alcohol:}{A factor with levels `No` and `Yes`. Consumption of alcohol}
 #'   \item{residence_center:}{A factor with levels `No` and `Yes`. Is the patient currently living in a long-term facility?}

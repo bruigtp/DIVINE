@@ -32,6 +32,7 @@ Supported formats and their functionality are provided via the package dependenc
 }
 }
 \examples{
+\dontrun{
 df <- data.frame(Name = c("Alice", "Bob"), Age = c(25, 30), Score = c(85.5, 90.0))
 
 # Export to Excel
@@ -42,5 +43,6 @@ export_data(data = df, format = "csv", path = "example.csv")
 
 # Export to SPSS
 export_data(data = df, format = "sav", path = "example.sav")
+}
 
 }

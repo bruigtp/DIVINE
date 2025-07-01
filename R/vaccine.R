@@ -14,7 +14,7 @@
 #'   \item{center:}{A factor with levels `Hospital A`, `Hospital B`, `Hospital C`, `Hospital D`, and `Hospital E`. Center of admission}
 #'   \item{vaccine:}{A factor with levels `No`, `Yes` and `Not applicable` (for patients included in waves before vaccination started). Is the patient vaccinated for COVID-19?}
 #'   \item{complete_vaccine:}{A factor with levels `No`, `Partial`, `Complete` and `Not applicable` (for patients included in waves before vaccination started). Is the patient partially vaccinated (one dose of two-dose vaccines), completely vaccinated (one dose for one-dose vaccines or two doses for two-dose vaccines) or not vaccinated at all?}
-#'   \item{inmune_vaccine:}{A factor with levels `No immunity`, `Partial immunity`, `Total immunity` and `Not applicable` (for patients included in waves before vaccination started). Defines the level of immunity of the patient: not vaccinated (`No immunity`), vaccinated with only one dose for two-dose vaccines (`Partial immunity`), vaccinated with two doses but less than 7 days have passed since the second dose (`Partial immunity`) or vaccinated with all the doses and more than 7 days have passed since the second dose (`Total immunity`)}
+#'   \item{immune_vaccine:}{A factor with levels `No immunity`, `Partial immunity`, `Total immunity` and `Not applicable` (for patients included in waves before vaccination started). Defines the level of immunity of the patient: not vaccinated (`No immunity`), vaccinated with only one dose for two-dose vaccines (`Partial immunity`), vaccinated with two doses but less than 7 days have passed since the second dose (`Partial immunity`) or vaccinated with all the doses and more than 7 days have passed since the second dose (`Total immunity`)}
 #' }
 #'
 #' @references

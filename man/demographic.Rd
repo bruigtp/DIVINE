@@ -12,7 +12,6 @@ A data frame with 5813 rows and 8 columns
 \item{center:}{A factor with levels \verb{Hospital A}, \verb{Hospital B}, \verb{Hospital C}, \verb{Hospital D}, and \verb{Hospital E}. Center of admission}
 \item{sex:}{A factor with levels \code{Male} and \code{Female}. Sex at birth}
 \item{age:}{Age at hospital admission}
-\item{race:}{A factor with levels \code{Asian}, \code{Caucasian}, \code{Latina}, \code{Black}, and \code{Others}. Race}
 \item{smoker:}{A factor with levels \code{Ex-smoker}, \code{No} and \code{Yes}. Smoking status}
 \item{alcohol:}{A factor with levels \code{No} and \code{Yes}. Consumption of alcohol}
 \item{residence_center:}{A factor with levels \code{No} and \code{Yes}. Is the patient currently living in a long-term facility?}

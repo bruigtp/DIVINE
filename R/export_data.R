@@ -19,6 +19,7 @@
 #' - **sas7bdat**: Uses `haven` for SAS exports.
 #'
 #' @examples
+#' \dontrun{
 #' df <- data.frame(Name = c("Alice", "Bob"), Age = c(25, 30), Score = c(85.5, 90.0))
 #'
 #' # Export to Excel
@@ -29,6 +30,7 @@
 #'
 #' # Export to SPSS
 #' export_data(data = df, format = "sav", path = "example.sav")
+#' }
 #'
 #' @export
 export_data <- function(data = NULL, format = "xlsx", path = NULL) {
