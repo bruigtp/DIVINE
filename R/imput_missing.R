@@ -111,27 +111,33 @@ imput_missing <- function(data, method = list(dplyr::where(is.numeric) ~ "mean")
 
     }
 
-    # Perform defined imputations
+    # Define custom function to imput missings
+    fill_na_custom <- function(x, arg_value) {
+      if (!anyNA(x)) return(x)
 
+      replacement <- if (identical(arg_value, "mean")) {
+        mean(x, na.rm = TRUE)
+      } else if (identical(arg_value, "median")) {
+        stats::median(x, na.rm = TRUE)
+      } else if (identical(arg_value, "mode")) {
+        mode_value(x)
+      } else if (is.numeric(arg_value) || is.character(arg_value)) {
+        arg_value
+      } else {
+        stop("Invalid `arg_value`")
+      }
+
+      # Only replace NAs
+      x[is.na(x)] <- replacement
+      x
+    }
+
+    # Perform defined imputations
     data <- data |>
       dplyr::mutate(
         dplyr::across(
           .cols = dplyr::all_of(arg_vars),
-          function(x)  {
-
-            if (!anyNA(x)) return(x)
-
-            replacement <- switch(
-              arg_value,
-              mean = mean(x, na.rm = TRUE),
-              median = stats::median(x, na.rm = TRUE),
-              mode = mode_value(x),
-              as.numeric(arg_value)
-            )
-
-            # Only replace NAs
-            dplyr::if_else(is.na(x), replacement, x)
-          }
+          ~ fill_na_custom(.x, arg_value)
         )
       )
   }
