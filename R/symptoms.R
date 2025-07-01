@@ -1,4 +1,4 @@
-#' DIVINE's demographic database
+#' DIVINE's symptoms table
 #'
 #' Information on COVID-19 associated symptoms of patients included in the DIVINE cohort. Data was collected at hospital admission.
 #'
@@ -10,29 +10,29 @@
 #' @format A data frame with 5813 rows and 24 columns
 #'  \describe{
 #'   \item{record_id:}{Identifier of each record. This information does not match the real data.}
-#'   \item{covid_wave:}{COVID-19 wave}
+#'   \item{covid_wave:}{A factor with levels `Wave 1`, `Wave 2`, `Wave 3`, and `Wave 5`. COVID-19 wave.}
 #'   \item{center:}{A factor with levels `Hospital A`, `Hospital B`, `Hospital C`, `Hospital D`, and             `Hospital E`. Center of admission}
-#'   \item{symptom_onset_date:}{}
-#'   \item{rhinorrhea:}{Rhinorrhea}
-#'   \item{anosmia:}{Anosmia}
-#'   \item{ageusia:}{Ageusia}
-#'   \item{arthromyalgia:}{Arthromyalgia}
-#'   \item{odynophagia:}{Odynophagia}
-#'   \item{fever:}{Fever}
-#'   \item{cough:}{Cough}
-#'   \item{dyspnea:}{Dyspnoea}
-#'   \item{expectoration:}{Expectoration}
-#'   \item{diarrhea:}{Diarrhea}
-#'   \item{vomit:}{Vomiting}
-#'   \item{nausea:}{Nausea}
-#'   \item{asthenia:}{Asthenia}
-#'   \item{anorexia:}{Anorexia}
-#'   \item{cephal:}{Headache}
-#'   \item{chest_pain:}{Chest pain}
-#'   \item{abdominal_pain:}{Abdominal pain}
-#'   \item{confusional_syndrome:}{Confusional syndrome}
-#'   \item{shock_admission:}{Shock on admission}
-#'   \item{bacterial_infection:}{Bacterial infection}
+#'   \item{symptom_days:}{Days from symptoms onset to hospitalization}
+#'   \item{rhinorrhea:}{A factor with levels `No` and `Yes`. Rhinorrhea}
+#'   \item{anosmia:}{A factor with levels `No` and `Yes`. Anosmia}
+#'   \item{ageusia:}{A factor with levels `No` and `Yes`. Ageusia}
+#'   \item{arthromyalgia:}{A factor with levels `No` and `Yes`. Arthromyalgia}
+#'   \item{odynophagia:}{A factor with levels `No` and `Yes`. Odynophagia}
+#'   \item{fever:}{A factor with levels `No` and `Yes`. Fever}
+#'   \item{cough:}{A factor with levels `No` and `Yes`. Cough}
+#'   \item{dyspnea:}{A factor with levels `No` and `Yes`. Dyspnoea}
+#'   \item{expectoration:}{A factor with levels `No` and `Yes`. Expectoration}
+#'   \item{diarrhea:}{A factor with levels `No` and `Yes`. Diarrhea}
+#'   \item{vomit:}{A factor with levels `No` and `Yes`. Vomiting}
+#'   \item{nausea:}{A factor with levels `No` and `Yes`. Nausea}
+#'   \item{asthenia:}{A factor with levels `No` and `Yes`. Asthenia}
+#'   \item{anorexia:}{A factor with levels `No` and `Yes`. Anorexia}
+#'   \item{cephal:}{A factor with levels `No` and `Yes`. Headache}
+#'   \item{chest_pain:}{A factor with levels `No` and `Yes`. Chest pain}
+#'   \item{abdominal_pain:}{A factor with levels `No` and `Yes`. Abdominal pain}
+#'   \item{confusional_syndrome:}{A factor with levels `No` and `Yes`. Confusional syndrome}
+#'   \item{shock_admission:}{A factor with levels `No` and `Yes`. Shock on admission}
+#'   \item{bacterial_infection:}{A factor with levels `No` and `Yes`. Bacterial infection}
 #' }
 #'
 #' @references

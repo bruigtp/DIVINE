@@ -3,12 +3,12 @@
 \docType{data}
 \name{analytics}
 \alias{analytics}
-\title{DIVINE's database on laboratory data}
+\title{DIVINE's table on laboratory data}
 \format{
 A data frame with 5813 rows and 9 columns
 \describe{
 \item{record_id:}{Identifier of each record. This information does not match the real data.}
-\item{covid_wave:}{COVID-19 wave}
+\item{covid_wave:}{A factor with levels \verb{Wave 1}, \verb{Wave 2}, \verb{Wave 3}, and \verb{Wave 5}. COVID-19 wave.}
 \item{center:}{A factor with levels \verb{Hospital A}, \verb{Hospital B}, \verb{Hospital C}, \verb{Hospital D}, and             \verb{Hospital E}. Center of admission}
 \item{analytics_available:}{Is there an analytic available for this patient?}
 \item{total_leukocytes:}{Total leukocytes (mil/mm³)}

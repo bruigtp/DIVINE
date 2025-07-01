@@ -39,7 +39,7 @@ export_data <- function(data = NULL, format = "xlsx", path = NULL) {
   }
 
   # Check if data is a dataframe or tibble
-  if (!is.data.frame(data) && !is_tibble(data)) {
+  if (!is.data.frame(data) && !tibble::is_tibble(data)) {
     stop("The R object to export must be a dataframe or a tibble.", call. = FALSE)
   }
 
@@ -50,14 +50,14 @@ export_data <- function(data = NULL, format = "xlsx", path = NULL) {
 
   # Handle export based on the format
   if (format == "xlsx") {
-    hs <- createStyle(textDecoration = "BOLD", fontColour = "#FFFFFF", fontSize = 12, fontName = "Arial Narrow", fgFill = "#4F80BD", halign = "center")
+    hs <- openxlsx::createStyle(textDecoration = "BOLD", fontColour = "#FFFFFF", fontSize = 12, fontName = "Arial Narrow", fgFill = "#4F80BD", halign = "center")
     openxlsx::write.xlsx(x = data, file = path, overwrite = TRUE, colNames = TRUE, borders = "rows", headerStyle = hs)
   } else if (format == "csv") {
-    write.csv(data, file = path, row.names = FALSE)
+    utils::write.csv(data, file = path, row.names = FALSE)
   } else if (format == "rds") {
     saveRDS(data, file = path)
   } else if (format == "txt") {
-    write.table(data, file = path, row.names = FALSE, quote = FALSE, sep = "\t")
+    utils::write.table(data, file = path, row.names = FALSE, quote = FALSE, sep = "\t")
   } else if (format == "sav") {
     haven::write_sav(data, path)
   } else if (format == "dta") {
@@ -72,5 +72,3 @@ export_data <- function(data = NULL, format = "xlsx", path = NULL) {
   # Final message
   message("Data successfully exported to ", path)
 }
-
-# export_data(analytics, format = "dta", path = r"(I:\CTebe\2_Projectes\2024_06DIVINE_package\datos.dta)")

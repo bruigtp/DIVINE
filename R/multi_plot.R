@@ -7,21 +7,28 @@
 #' @param x_var A character string specifying the variable to plot on the x-axis (for univariate plots).
 #' @param y_var A character string specifying the variable to plot on the y-axis (for bivariate plots).
 #' @param plot_type A character string specifying the type of plot. Options include "histogram", "density", "boxplot", "barplot", or "spider".
+#' @param bin_width The width of the bins (only needed if `plot_type` is "histogram")
 #' @param fill_color A character string specifying the fill color for the plot (optional).
 #' @param group A character string specifying the grouping variable for faceting or grouping within plots (optional).
 #' @param title A character string specifying the title of the plot (optional).
 #' @param x_lab A character string specifying the label for the x-axis (optional).
 #' @param y_lab A character string specifying the label for the y-axis (optional).
+#' @param facet_var A character string specifying a variable for faceting the plot into multiple panels (optional).
 #' @param radar_var A vector of variables to plot in a spider (radar) plot (only needed if `plot_type` is "spider").
 #' @param radar_color A vector of colors to use for the radar plot (only needed if `plot_type` is "spider").
+#' @param theme_custom A ggplot2 theme object used to customize the appearance of the plot (optional). Default is `theme_minimal()`.
 #' @import ggplot2
 #' @import fmsb
 #' @examples
 #' data <- mtcars
+#'
 #' multi_plot(data, x_var = "mpg", plot_type = "histogram", fill_color = "skyblue", title = "Histogram of MPG")
+#'
 #' multi_plot(data, x_var = "cyl", plot_type = "barplot", group = "gear", title = "Barplot of Cylinder Counts")
-#' multi_plot(data, x_var = "cyl", y_var = "mpg", plot_type = "boxplot", fill_color = "green", title = "Boxplot of MPG by Cylinders", group = "gear")
-#' multi_plot(data, radar_var = c("mpg", "hp", "wt", "qsec"), plot_type = "spider", radar_color = c("blue", "lightblue"))
+#'
+#' multi_plot(data, x_var = "cyl", y_var = "mpg", plot_type = "boxplot", fill_color = "green", group = "gear")
+#'
+#' multi_plot(data, radar_var = c("mpg", "hp", "wt"), plot_type = "spider", radar_color = c("blue", "lightblue"))
 #' @export
 multi_plot <- function(data, x_var = NULL, y_var = NULL, plot_type = "histogram",
                        fill_color = "blue", bin_width = NULL, group = NULL,
@@ -54,7 +61,7 @@ multi_plot <- function(data, x_var = NULL, y_var = NULL, plot_type = "histogram"
       theme_custom +
       ggplot2::labs(title = title, x = ifelse(is.null(x_lab), x_var, x_lab), y = ifelse(is.null(y_lab), "Count", y_lab))
     if (!is.null(facet_var) && facet_var %in% names(data)) {
-      p <- p + ggplot2::facet_wrap(as.formula(paste("~", facet_var)))
+      p <- p + ggplot2::facet_wrap(stats::as.formula(paste("~", facet_var)))
     }
     print(p)
 
@@ -64,7 +71,7 @@ multi_plot <- function(data, x_var = NULL, y_var = NULL, plot_type = "histogram"
       theme_custom +
       ggplot2::labs(title = title, x = ifelse(is.null(x_lab), x_var, x_lab), y = y_lab)
     if (!is.null(facet_var) && facet_var %in% names(data)) {
-      p <- p + ggplot2::facet_wrap(as.formula(paste("~", facet_var)))
+      p <- p + ggplot2::facet_wrap(stats::as.formula(paste("~", facet_var)))
     }
     print(p)
 
@@ -75,7 +82,7 @@ multi_plot <- function(data, x_var = NULL, y_var = NULL, plot_type = "histogram"
       theme_custom +
       ggplot2::labs(title = title, x = ifelse(is.null(x_lab), x_var, x_lab), y = ifelse(is.null(y_lab), y_var, y_lab))
     if (!is.null(facet_var) && facet_var %in% names(data)) {
-      p <- p + ggplot2::facet_wrap(as.formula(paste("~", facet_var)))
+      p <- p + ggplot2::facet_wrap(stats::as.formula(paste("~", facet_var)))
     }
     print(p)
 
@@ -85,7 +92,7 @@ multi_plot <- function(data, x_var = NULL, y_var = NULL, plot_type = "histogram"
       theme_custom +
       ggplot2::labs(title = title, x = ifelse(is.null(x_lab), x_var, x_lab), y = y_lab)
     if (!is.null(facet_var) && facet_var %in% names(data)) {
-      p <- p + ggplot2::facet_wrap(as.formula(paste("~", facet_var)))
+      p <- p + ggplot2::facet_wrap(stats::as.formula(paste("~", facet_var)))
     }
     print(p)
 
@@ -97,7 +104,7 @@ multi_plot <- function(data, x_var = NULL, y_var = NULL, plot_type = "histogram"
 
     # Prepare and scale radar data
     radar_data <- data[, radar_var, drop = FALSE]
-    radar_data <- radar_data[complete.cases(radar_data), ]
+    radar_data <- radar_data[stats::complete.cases(radar_data), ]
 
     radar_data_scaled <- as.data.frame(lapply(radar_data, function(x) {
       (x - min(x, na.rm = TRUE)) / (max(x, na.rm = TRUE) - min(x, na.rm = TRUE))
@@ -116,14 +123,3 @@ multi_plot <- function(data, x_var = NULL, y_var = NULL, plot_type = "histogram"
                      axislabcol = "grey", vlcex = 0.8)
   }
 }
-
-
-
-
-multi_plot(mtcars, x_var = "mpg", plot_type = "histogram", fill_color = "skyblue", title = "Histogram of MPG")
-
-multi_plot(mtcars, x_var = "cyl", plot_type = "barplot", title = "Barplot of Cylinder Counts")
-
-multi_plot(mtcars, x_var = "cyl", y_var = "mpg", group = "cyl", plot_type = "boxplot", fill_color = "green", title = "Boxplot of MPG by Cylinders", theme_custom = ggplot2::theme_bw())
-
-multi_plot(mtcars, radar_var = c("mpg", "hp", "wt", "qsec"), plot_type = "spider", radar_color = c("blue", "white"), theme_custom = ggplot2::theme_bw())

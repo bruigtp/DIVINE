@@ -1,8 +1,11 @@
 ---
-title: "Datasets"
-output: rmarkdown::html_vignette
+title: "DIVINE datasets"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+    number_sections: true
 vignette: >
-  %\VignetteIndexEntry{Datasets}
+  %\VignetteIndexEntry{DIVINE}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -12,25 +15,303 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   warning = FALSE,
-  message = FALSE
+  message = FALSE,
+  eval = FALSE
 )
 ```
 
-```{r setup}
+```{r setup, include = FALSE}
 rm(list = ls())
+library("DIVINE")
+```
+
+<br>
+
+# Introduction
+
+The **DIVINE** package offers a collection of curated datasets along with convenient data management functions. These sample datasets (e.g., patient demographics, symptoms, treatments, and outcomes) are included for demonstration purposes, enabling users to practice and test various data manipulation workflows. Using DIVINE functions, you can inspect, clean, merge, summarize, visualize, and export data efficiently. In this vignette, we illustrate common tasks and functions provided by DIVINE to help streamline your data analysis process.
+
+<br>
+<br>
+
+# Installation and Loading
+
+To install DIVINE, use the standard CRAN or GitHub approach:
+
+- CRAN:
+
+```{r}
+install.packages("DIVINE")
+```
+
+- GitHub (development version):
+
+```{r}
+# install.packages("devtools")
+devtools::install_github("bruigtp/DIVINE")
+```
+
+Once installed, load the package:
+
+```{r}
 library(DIVINE)
 ```
 
-# Data overview
+This makes all datasets and functions available in your R session.
+
+<br>
+<br>
+
+# Available Datasets
+
+Use the `data()` function to list available sample datasets. For example:
 
 ```{r}
-# load(analytics)
-data_overview(analytics, 3)
+data(package = "DIVINE")
 ```
 
-# Multi-join
+The DIVINE package includes the following datasets (each represents a data frame):
+
+- `analytics`
+
+- `comorbidities`
+
+- `complications`
+
+- `concomitant_medication`
+
+- `demographic`
+
+- `end_followup`
+
+- `icu`
+
+- `inhosp_antibiotics`
+
+- `inhosp_antivirals`
+
+- `inhosp_other_treatments`
+
+- `scores`
+
+- `symptoms`
+
+- `vital_signs`
+
+- `vaccine`
+
+To obtain more information for a dataset:
 
 ```{r}
-multi_join(list(analytics, vital_signs, treatment), key = "record_id", join_type = "left")
+?demographic
 ```
 
+
+Load any dataset into your R environment using `data("dataset_name")`. For example, to load and preview the `demographic` dataset:
+
+```{r}
+data("demographic")
+head(demographic)
+```
+
+<br>
+<br>
+
+# Workflow Examples
+
+The following examples demonstrate a typical data management workflow using DIVINE functions. Each section shows how to use a function step-by-step with example output.
+
+<br>
+
+## 1. Inspecting Data with `data_overview()`
+
+Begin by understanding your dataset’s structure, variable types, and missing values using `data_overview()`. This function returns a list containing dimensions, variable types, missing value summary, and a data preview.
+
+```{r}
+# Overview of demographic data
+ov <- data_overview(demographic)
+
+ov
+
+# Each of the elements
+ov$dimensions      # number of rows and columns
+ov$variable_types  # data types of each variable
+ov$missing_values  # count of missing values per column
+ov$preview         # a small preview of the data
+```
+
+This helps you quickly assess the dataset before any processing.
+
+<br>
+
+## 2. Handling Missing Values with `imput_missing()`
+
+The `imput_missing()` function lets you replace or remove missing values in a single operation. You provide a named list of formulas (`<selector> ~ <value>`), where `<selector>` can be any tidyselect expression (e.g. a column name, `starts_with()`, or `where(is.numeric)`) and `<value>` one of the following strategies:
+
+- "mean" or "median" (numeric columns only)
+
+- "mode" (character/factor columns only)
+
+- a numeric constant (for numeric columns)
+
+- a character constant (for character/factor columns)
+
+You can also drop rows that are entirely `NA` by setting `all_na_rm = TRUE`.
+
+```{r}
+# 1) Default: replace all numeric NAs with column means
+cleaned_default <- imput_missing(icu)
+
+# 2) Single column strategies:
+#    - Mean for ards_days
+#    - Zero for uci_enter_days
+cleaned_mix <- imput_missing(
+  icu,
+  method = list(
+    ards_days      ~ "mean",
+    uci_enter_days ~ 0
+  )
+)
+
+# 3) Multiple columns at once:
+#    - Medians for any column ending in "_days"
+cleaned_days_median <- imput_missing(
+  icu,
+  method = list(starts_with(".*_days$") ~ "median")
+)
+
+# 4) Factor/character imputation:
+#    - Fill gender with its most common level
+#    - Fill status with "Unknown"
+cleaned_char <- imput_missing(
+  icu,
+  method = list(
+    gender ~ "mode",
+    status ~ "Unknown"
+  )
+)
+
+# 5) Drop all-NA rows first, then impute numeric means
+cleaned_no_empty <- imput_missing(
+  icu,
+  method    = list(where(is.numeric) ~ "mean"),
+  all_na_rm = TRUE
+)
+# ▶ message: Removed X rows where all values were NA
+```
+
+After running `imput_missing()`, the returned cleaned dataset has no missing values in the defined columns, according to the chosen strategy. The dataset will maintain the same structure, unless the argument `all_na_rm` is set to `TRUE`.
+
+<br>
+
+## 3. Merging Multiple Tables with `multi_join()`
+
+When working with related tables, `multi_join()` merges several data frames by a common key. You can perform different join types (`"left"`, `"inner"`, `"right"`, `"full"`). For example, suppose you have demographic, vital signs, and scores tables all keyed by `record_id`:
+
+```{r}
+data("vital_signs")
+data("scores")
+
+joined <- multi_join(
+  list(demographic, vital_signs, scores),
+  key = "record_id",
+  join_type = "left"
+)
+```
+
+This creates one combined data frame `joined` that includes all rows from `demographic` and matches information from `vital_signs` and `scores` by `record_id`. Change `join_type` as needed to control which rows are kept.
+
+<br>
+
+## 4. Creating Summary Tables with `stats_table()`
+
+Use `stats_table()` to generate summary tables (leveraging the `gtsummary` package) for specified variables, optionally stratified by a grouping variable. The `statistic_type` parameter lets you choose mean/SD, median/IQR, or both. For example:
+
+```{r}
+# Mean (SD) by group (e.g., by gender or cohort)
+tbl1 <- stats_table(
+  demographic,
+  vars = c("age", "smoker", "alcohol"),
+  by = "sex",
+  statistic_type = "mean_sd",
+  pvalue = TRUE
+)
+
+# Median [Q1; Q3] for all observations (no grouping)
+tbl2 <- stats_table(
+  demographic,
+  statistic_type = "median_iqr"
+)
+
+# Both mean (SD) and median [IQR] combined
+tbl3 <- stats_table(
+  demographic,
+  statistic_type = "both"
+)
+```
+
+Each `tbl` object is a **gtsummary**-style table that you can print or export to reports. Include `pvalue = TRUE` to add p-values for group comparisons.
+
+<br>
+
+## 5. Visualizing Data with `multi_plot()`
+
+Create common plot types quickly with `multi_plot()`. It supports histograms, density plots, boxplots, barplots, and spider (radar) charts. For instance:
+
+```{r}
+# Histogram of age
+multi_plot(
+  demographic,
+  x_var = "age",
+  plot_type = "histogram",
+  fill_color = "skyblue",
+  title = "Distribution of Age"
+)
+
+# Boxplot of age by sex
+multi_plot(
+  demographic,
+  x_var = "sex",
+  y_var = "age",
+  plot_type = "boxplot",
+  group = "sex",
+  title = "Age by Sex"
+)
+
+# Spider plot of numeric variables (e.g., compare age, weight, height distributions)
+multi_plot(
+  comorbidities,
+  plot_type = "spider",
+  radar_var = c("hypertension", "dyslipidemia", "depression", "mild_kidney_disease", "ceiling_dico"),
+  radar_vlabels = stringr::str_to_sentence(c("hypertension", "dyslipidemia", "depression", "mild_kidney_disease", "ceiling_dico")),
+  radar_color = "blue",
+  radar_ref_lev = "Yes"
+)
+```
+
+Each call generates a plot (using **ggplot2** under the hood). Customize titles, colors, and variables as needed for your data.
+
+<br>
+
+## 6. Exporting Data with `export_data()`
+
+Finally, use `export_data()` to save your processed data to disk in various formats. Supported formats include CSV, Excel (XLSX), RDS, SPSS, Stata, and SAS:
+
+```{r}
+# Export cleaned data to CSV
+export_data(cleaned, format = "csv", path = "cleaned_demographic.csv")
+
+# Export joined data to Excel
+export_data(joined, format = "xlsx", path = "joined_data.xlsx")
+```
+
+Specify the `path` including filename and extension; the function will write the file accordingly. You can also use `format = "rds"`, `"sav"` (SPSS), `"dta"` (Stata), or `"sas7bdat"` (SAS) as needed.
+
+<br>
+<br>
+
+# Further Resources
+
+- **Package Documentation:** View the reference manual for detailed function descriptions (e.g., via `help(package = "DIVINE")` or the CRAN/GitHub repository documentation).
+
+- **In-R Help:** Use `?DIVINE`, `?data_overview`, `?imput_missing`, etc., to access function-specific help pages.

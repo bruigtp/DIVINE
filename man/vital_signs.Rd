@@ -3,22 +3,22 @@
 \docType{data}
 \name{vital_signs}
 \alias{vital_signs}
-\title{DIVINE's database on vital signs}
+\title{DIVINE's table on vital signs}
 \format{
-A data frame with 5813 rows and 14 columns
+A data frame with 5813 rows and 13 columns
 \describe{
 \item{record_id:}{Identifier of each record. This information does not match the real data.}
-\item{covid_wave:}{COVID-19 wave}
-\item{center:}{A factor with levels \verb{Hospital A}, \verb{Hospital B}, \verb{Hospital C}, \verb{Hospital D}, and             \verb{Hospital E}. Center of admission}
+\item{covid_wave:}{A factor with levels \verb{Wave 1}, \verb{Wave 2}, \verb{Wave 3}, and \verb{Wave 5}. COVID-19 wave.}
+\item{center:}{A factor with levels \verb{Hospital A}, \verb{Hospital B}, \verb{Hospital C}, \verb{Hospital D}, and \verb{Hospital E}. Center of admission}
 \item{temperature:}{Human body temperature (ºC)}
 \item{fio2_contributed:}{Fraction of inspired oxygen (\%)}
 \item{syst_blood_press:}{Systolic blood pressure (mmHg)}
 \item{diast_blood_press:}{Diastolic blood pressure (mmHg)}
 \item{saturation:}{Oxygen saturation (\%)}
 \item{cardiac_freq:}{Heart rate (bpm)}
-\item{support2:}{Oxygen Support}
-\item{normal_radio:}{Normal X-ray}
-\item{pleural_effusion:}{Pleural effusion}
+\item{supporto2:}{A factor with levels \code{No} and \code{Yes}. Oxygen Support}
+\item{normal_radio:}{A factor with levels \code{No} and \code{Yes}. Normal X-ray}
+\item{pleural_effusion:}{A factor with levels \code{No} and \code{Yes}. Pleural effusion}
 \item{saturation_fio2:}{Oxygen Saturation to FiO2 Ratio}
 }
 }

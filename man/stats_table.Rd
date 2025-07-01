@@ -23,8 +23,8 @@ stats_table(
 \item{statistic_type}{A character string specifying the type of statistic to report. Options are:
 \itemize{
 \item "mean_sd": Mean (SD) for continuous variables.
-\item "median_iqr": Median \link{Q1; Q3} for continuous variables.
-\item "both": Both Mean (SD) and Median \link{Q1; Q3}.
+\item "median_iqr": Median (Q1; Q3) for continuous variables.
+\item "both": Both Mean (SD) and Median (Q1; Q3).
 }}
 
 \item{pvalue}{A logical value indicating whether to include p-values in the summary. Defaults to FALSE.}
@@ -36,7 +36,7 @@ A gtsummary table object.
 }
 \description{
 This function generates a summary table using the \code{gtsummary} package. It allows customization
-of reported statistics, including mean (SD), median \link{Q1; Q3}, or both. Users can choose to include
+of reported statistics, including mean (SD), median (Q1; Q3), or both. Users can choose to include
 p-values for group comparisons and manage the reporting of missing values.
 }
 \examples{

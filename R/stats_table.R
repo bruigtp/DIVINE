@@ -1,7 +1,7 @@
 #' Create Summary Table
 #'
 #' This function generates a summary table using the `gtsummary` package. It allows customization
-#' of reported statistics, including mean (SD), median [Q1; Q3], or both. Users can choose to include
+#' of reported statistics, including mean (SD), median (Q1; Q3), or both. Users can choose to include
 #' p-values for group comparisons and manage the reporting of missing values.
 #'
 #' @param data A data frame containing the dataset.
@@ -9,8 +9,8 @@
 #' @param by A character string specifying a grouping variable. If NULL, no grouping is applied.
 #' @param statistic_type A character string specifying the type of statistic to report. Options are:
 #'   - "mean_sd": Mean (SD) for continuous variables.
-#'   - "median_iqr": Median [Q1; Q3] for continuous variables.
-#'   - "both": Both Mean (SD) and Median [Q1; Q3].
+#'   - "median_iqr": Median (Q1; Q3) for continuous variables.
+#'   - "both": Both Mean (SD) and Median (Q1; Q3).
 #' @param pvalue A logical value indicating whether to include p-values in the summary. Defaults to FALSE.
 #' @param include_na A logical value indicating whether to include rows with missing values in the output. Defaults to TRUE.
 #'
@@ -31,10 +31,10 @@ stats_table <- function(data, vars = NULL, by = NULL, statistic_type = "mean_sd"
   if (!is.null(vars)) {
     if (!is.null(by)) {
       data <- data |>
-        dplyr::select(all_of(c(vars, by)))
+        dplyr::select(dplyr::all_of(c(vars, by)))
     } else {
       data <- data |>
-        dplyr::select(all_of(vars))
+        dplyr::select(dplyr::all_of(vars))
     }
   }
 
@@ -96,6 +96,3 @@ stats_table <- function(data, vars = NULL, by = NULL, statistic_type = "mean_sd"
   # Return the summary table
   return(tbl)
 }
-
-stats_table(iris, vars = c("Sepal.Length", "Sepal.Width", "Petal.Length", "Species"), by = "Petal.Width", statistic_type = "both") |>
-  gtsummary::add_stat_label()

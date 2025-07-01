@@ -56,7 +56,7 @@ data_overview <- function(data, preview_rows = 6) {
     # Missing values
     missing_values = sapply(data, function(x) sum(is.na(x))),
     # Preview
-    preview = head(data, n = preview_rows)
+    preview = utils::head(data, n = preview_rows)
   )
 
   return(overview)

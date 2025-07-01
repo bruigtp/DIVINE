@@ -3,16 +3,16 @@
 \docType{data}
 \name{vaccine}
 \alias{vaccine}
-\title{DIVINE's vaccine database}
+\title{DIVINE's vaccine table}
 \format{
 A data frame with 5813 rows and 6 columns
 \describe{
 \item{record_id:}{Identifier of each record. This information does not match the real data.}
-\item{covid_wave:}{COVID-19 wave}
-\item{center:}{A factor with levels \verb{Hospital A}, \verb{Hospital B}, \verb{Hospital C}, \verb{Hospital D}, and             \verb{Hospital E}. Center of admission}
-\item{vaccine:}{Is the patient vaccinated for COVID-19?}
-\item{complete_vaccine:}{A factor with levels \code{No}, \code{Partial} and \code{Complete}. Is the patient partially vaccinated (one dose of two-dose vaccines), completely vaccinated (one dose for one-dose vaccines or two doses for two-dose vaccines) or not vaccinated at all?}
-\item{inmune_vaccine:}{A factor with levels \verb{No immunity}, \verb{Partial immunity} and \verb{Total immunity}. Defines the level of immunity of the patient: not vaccinated (\verb{No immunity}), vaccinated with only one dose for two-dose vaccines (\verb{Partial immunity}), vaccinated with two doses but less than 7 days have passed since the second dose (\verb{Partial immunity}) or vaccinated with all the doses and more than 7 days have passed (\verb{Total immunity})}
+\item{covid_wave:}{A factor with levels \verb{Wave 1}, \verb{Wave 2}, \verb{Wave 3}, and \verb{Wave 5}. COVID-19 wave.}
+\item{center:}{A factor with levels \verb{Hospital A}, \verb{Hospital B}, \verb{Hospital C}, \verb{Hospital D}, and \verb{Hospital E}. Center of admission}
+\item{vaccine:}{A factor with levels \code{No}, \code{Yes} and \verb{Not applicable} (for patients included in waves before vaccination started). Is the patient vaccinated for COVID-19?}
+\item{complete_vaccine:}{A factor with levels \code{No}, \code{Partial}, \code{Complete} and \verb{Not applicable} (for patients included in waves before vaccination started). Is the patient partially vaccinated (one dose of two-dose vaccines), completely vaccinated (one dose for one-dose vaccines or two doses for two-dose vaccines) or not vaccinated at all?}
+\item{immune_vaccine:}{A factor with levels \verb{No immunity}, \verb{Partial immunity}, \verb{Total immunity} and \verb{Not applicable} (for patients included in waves before vaccination started). Defines the level of immunity of the patient: not vaccinated (\verb{No immunity}), vaccinated with only one dose for two-dose vaccines (\verb{Partial immunity}), vaccinated with two doses but less than 7 days have passed since the second dose (\verb{Partial immunity}) or vaccinated with all the doses and more than 7 days have passed since the second dose (\verb{Total immunity})}
 }
 }
 \usage{

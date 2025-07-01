@@ -2,56 +2,126 @@
 % Please edit documentation in R/multi_plot.R
 \name{multi_plot}
 \alias{multi_plot}
-\title{Plot Variables from Datasets}
+\title{multi_plot: Flexible Static or Interactive Plotting of Variables}
 \usage{
 multi_plot(
   data,
   x_var = NULL,
   y_var = NULL,
   plot_type = "histogram",
+  interactive = FALSE,
   fill_color = "blue",
+  color = "black",
   bin_width = NULL,
   group = NULL,
+  facet_var = NULL,
+  radar_var = NULL,
+  radar_color = "blue",
+  radar_vlabels = NULL,
+  radar_vlcex = 1,
+  radar_ref_lev = "Yes",
   title = NULL,
   x_lab = NULL,
   y_lab = NULL,
-  facet_var = NULL,
-  radar_var = NULL,
-  radar_color = c("blue", "red"),
+  legend_position = "right",
+  axis_text_angle = 0,
+  axis_text_size = 12,
+  title_size = 14,
   theme_custom = ggplot2::theme_minimal()
 )
 }
 \arguments{
-\item{data}{A data frame containing the dataset to plot.}
+\item{data}{A data frame or tibble containing your data.}
 
-\item{x_var}{A character string specifying the variable to plot on the x-axis (for univariate plots).}
+\item{x_var}{Character; name of the variable for x‑axis (required for all plot types except spider).}
 
-\item{y_var}{A character string specifying the variable to plot on the y-axis (for bivariate plots).}
+\item{y_var}{Character; name of the variable for y‑axis (required for boxplot, violin, scatter, and heatmap).}
 
-\item{plot_type}{A character string specifying the type of plot. Options include "histogram", "density", "boxplot", "barplot", or "spider".}
+\item{plot_type}{Character; one of \code{"histogram"}, \code{"density"}, \code{"boxplot"},
+\code{"barplot"}, \code{"violin"}, \code{"scatter"}, \code{"heatmap"}, or \code{"spider"}.}
 
-\item{fill_color}{A character string specifying the fill color for the plot (optional).}
+\item{interactive}{Logical; if \code{TRUE}, returns a Plotly interactive plot
+(not available for spider/radar charts). Default: \code{FALSE}.}
 
-\item{group}{A character string specifying the grouping variable for faceting or grouping within plots (optional).}
+\item{fill_color}{Character; fill color for non‑grouped geoms (default \code{"blue"}).}
 
-\item{title}{A character string specifying the title of the plot (optional).}
+\item{color}{Character; outline/line color (default \code{"black"}).}
 
-\item{x_lab}{A character string specifying the label for the x-axis (optional).}
+\item{bin_width}{Numeric; bin width for histograms. If \code{NULL}, computed automatically.}
 
-\item{y_lab}{A character string specifying the label for the y-axis (optional).}
+\item{group}{Character; name of grouping variable (optional).}
 
-\item{radar_var}{A vector of variables to plot in a spider (radar) plot (only needed if \code{plot_type} is "spider").}
+\item{facet_var}{Character; name of variable to facet by (optional).}
 
-\item{radar_color}{A vector of colors to use for the radar plot (only needed if \code{plot_type} is "spider").}
+\item{radar_var}{Character vector; names of numeric variables for spider plot (only for \code{"spider"}).}
+
+\item{radar_color}{Character or vector; border/fill color for spider chart (only for \code{"spider"}).}
+
+\item{radar_vlabels}{Character or vector; names of the variables for spider chart (only for \code{"spider"}).}
+
+\item{radar_vlcex}{Numeric; font size for variable labels in the spider chart (only for \code{"spider"}).}
+
+\item{radar_ref_lev}{Character; reference level for factors included in the spider chart (only for \code{"spider"}).}
+
+\item{title}{Character; plot title (optional).}
+
+\item{x_lab}{Character; x‑axis label (defaults to \code{x_var}).}
+
+\item{y_lab}{Character; y‑axis label (defaults to \code{y_var} or \code{"Count"}).}
+
+\item{legend_position}{Character; one of \code{"right","left","top","bottom","none"} (default \code{"right"}).}
+
+\item{axis_text_angle}{Numeric; rotation angle (degrees) for x‑axis tick labels (default \code{0}).}
+
+\item{axis_text_size}{Numeric; size of axis text in pts (default \code{12}).}
+
+\item{title_size}{Numeric; size of plot title text in pts (default \code{14}).}
+
+\item{theme_custom}{A ggplot2 theme object (default \code{theme_minimal()}).}
+}
+\value{
+A \code{ggplot} object (if \code{interactive = FALSE} or \code{plot_type = "spider"})
+or a \code{plotly} object (if \code{interactive = TRUE}).
 }
 \description{
-This function can generate histograms, density plots, boxplots, bar plots, or spider (radar) plots
-depending on the types of variables selected.
+Generate a variety of plots—histogram, density, boxplot, barplot, violin, scatter,
+heatmap, or spider (radar)—either as static ggplot2 objects or interactive Plotly widgets.
+}
+\details{
+\itemize{
+\item \strong{Histogram:} requires \code{x_var}; uses \code{geom_histogram()}.
+\item \strong{Density:} requires \code{x_var}; uses \code{geom_density()}.
+\item \strong{Boxplot/Violin:} require both \code{x_var} and \code{y_var}; automatically groups by \code{x_var} or by \code{group} if provided, with dynamic dodge width.
+\item \strong{Barplot:} requires \code{x_var}; counts occurrences.
+\item \strong{Scatter:} requires both \code{x_var} and \code{y_var}; uses \code{geom_point()}.
+\item \strong{Heatmap:} requires both \code{x_var} and \code{y_var}. If both are numeric,
+uses \code{stat_bin2d()}; otherwise counts combinations and uses \code{geom_tile()}.
+\item \strong{Spider:} requires \code{radar_var}; uses \code{fmsb::radarchart()}, static only.
+}
 }
 \examples{
-data <- mtcars
-multi_plot(data, x_var = "mpg", plot_type = "histogram", fill_color = "skyblue", title = "Histogram of MPG")
-multi_plot(data, x_var = "cyl", plot_type = "barplot", group = "gear", title = "Barplot of Cylinder Counts")
-multi_plot(data, x_var = "cyl", y_var = "mpg", plot_type = "boxplot", fill_color = "green", title = "Boxplot of MPG by Cylinders", group = "gear")
-multi_plot(data, radar_var = c("mpg", "hp", "wt", "qsec"), plot_type = "spider", radar_color = c("blue", "lightblue"))
+
+multi_plot(icu,
+  x_var = "uci_exit_days",
+  y_var = "ards_days",
+  plot_type = "scatter",
+  fill_color = "darkred",
+  color = "blue",
+  title = "ICU exit vs ARDS days"
+)
+
+multi_plot(
+  comorbidities,
+  plot_type = "spider",
+  radar_var = c(
+    "hypertension", "dyslipidemia", "depression", "mild_kidney_disease", "ceiling_dico"
+  ),
+  radar_vlabels = stringr::str_to_sentence(
+    c("hypertension", "dyslipidemia", "depression", "mild_kidney_disease", "ceiling_dico"
+    )
+  ),
+  radar_color = "blue",
+  radar_ref_lev = "Yes"
+)
+
 }

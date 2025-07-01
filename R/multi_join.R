@@ -52,14 +52,3 @@ multi_join <- function(datasets, key = "record_id", join_type = "left") {
 
   return(result)
 }
-
-# # Example data frames
-# data1 <- data.frame(id = 1:3, x = c("A", "B", "C"))
-# data2 <- data.frame(id = 2:4, y = c("D", "E", "F"))
-# data3 <- data.frame(id = 3:5, z = c("G", "H", "I"))
-#
-# # Perform left join on these data frames by the 'id' column
-# multi_join(list(data1, data2, data3), key = "id", join_type = "left")
-#
-# # Perform inner join on the same data frames
-# multi_join(list(analytics, symptoms), join_type = "left")

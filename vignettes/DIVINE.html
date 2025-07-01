@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>DIVINE datasets</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">DIVINE datasets</h1>
+
+
+<div id="TOC">
+<ul>
+<li><a href="#introduction" id="toc-introduction"><span class="toc-section-number">1</span> Introduction</a></li>
+<li><a href="#installation-and-loading" id="toc-installation-and-loading"><span class="toc-section-number">2</span> Installation and Loading</a></li>
+<li><a href="#available-datasets" id="toc-available-datasets"><span class="toc-section-number">3</span> Available Datasets</a></li>
+<li><a href="#workflow-examples" id="toc-workflow-examples"><span class="toc-section-number">4</span> Workflow Examples</a>
+<ul>
+<li><a href="#inspecting-data-with-data_overview" id="toc-inspecting-data-with-data_overview"><span class="toc-section-number">4.1</span> 1. Inspecting Data with
+<code>data_overview()</code></a></li>
+<li><a href="#handling-missing-values-with-imput_missing" id="toc-handling-missing-values-with-imput_missing"><span class="toc-section-number">4.2</span> 2. Handling Missing Values with
+<code>imput_missing()</code></a></li>
+<li><a href="#merging-multiple-tables-with-multi_join" id="toc-merging-multiple-tables-with-multi_join"><span class="toc-section-number">4.3</span> 3. Merging Multiple Tables with
+<code>multi_join()</code></a></li>
+<li><a href="#creating-summary-tables-with-stats_table" id="toc-creating-summary-tables-with-stats_table"><span class="toc-section-number">4.4</span> 4. Creating Summary Tables with
+<code>stats_table()</code></a></li>
+<li><a href="#visualizing-data-with-multi_plot" id="toc-visualizing-data-with-multi_plot"><span class="toc-section-number">4.5</span> 5. Visualizing Data with
+<code>multi_plot()</code></a></li>
+<li><a href="#exporting-data-with-export_data" id="toc-exporting-data-with-export_data"><span class="toc-section-number">4.6</span> 6. Exporting Data with
+<code>export_data()</code></a></li>
+</ul></li>
+<li><a href="#further-resources" id="toc-further-resources"><span class="toc-section-number">5</span> Further Resources</a></li>
+</ul>
+</div>
+
+<p><br></p>
+<div id="introduction" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Introduction</h1>
+<p>The <strong>DIVINE</strong> package offers a collection of curated
+datasets along with convenient data management functions. These sample
+datasets (e.g., patient demographics, symptoms, treatments, and
+outcomes) are included for demonstration purposes, enabling users to
+practice and test various data manipulation workflows. Using DIVINE
+functions, you can inspect, clean, merge, summarize, visualize, and
+export data efficiently. In this vignette, we illustrate common tasks
+and functions provided by DIVINE to help streamline your data analysis
+process.</p>
+<p><br> <br></p>
+</div>
+<div id="installation-and-loading" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Installation and
+Loading</h1>
+<p>To install DIVINE, use the standard CRAN or GitHub approach:</p>
+<ul>
+<li>CRAN:</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;DIVINE&quot;</span>)</span></code></pre></div>
+<ul>
+<li>GitHub (development version):</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># install.packages(&quot;devtools&quot;)</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;bruigtp/DIVINE&quot;</span>)</span></code></pre></div>
+<p>Once installed, load the package:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">library</span>(DIVINE)</span></code></pre></div>
+<p>This makes all datasets and functions available in your R
+session.</p>
+<p><br> <br></p>
+</div>
+<div id="available-datasets" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Available Datasets</h1>
+<p>Use the <code>data()</code> function to list available sample
+datasets. For example:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">data</span>(<span class="at">package =</span> <span class="st">&quot;DIVINE&quot;</span>)</span></code></pre></div>
+<p>The DIVINE package includes the following datasets (each represents a
+data frame):</p>
+<ul>
+<li><p><code>analytics</code></p></li>
+<li><p><code>end_followup</code></p></li>
+<li><p><code>complications</code></p></li>
+<li><p><code>comorbidities</code></p></li>
+<li><p><code>demographic</code></p></li>
+<li><p><code>symptoms</code></p></li>
+<li><p><code>scores</code></p></li>
+<li><p><code>vital_signs</code></p></li>
+<li><p><code>concomitant_medicat</code></p></li>
+<li><p><code>inhosp_other_treatments</code></p></li>
+<li><p><code>icu</code></p></li>
+<li><p><code>vaccine</code></p></li>
+<li><p><code>inhosp_antivirals</code></p></li>
+<li><p><code>inhosp_antibiotics</code></p></li>
+</ul>
+<p>Load any dataset into your R environment using
+<code>data(&quot;dataset_name&quot;)</code>. For example, to load and preview the
+<code>demographic</code> dataset:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;demographic&quot;</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">head</span>(demographic)</span></code></pre></div>
+<p><br> <br></p>
+</div>
+<div id="workflow-examples" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Workflow Examples</h1>
+<p>The following examples demonstrate a typical data management workflow
+using DIVINE functions. Each section shows how to use a function
+step-by-step with example output.</p>
+<p><br></p>
+<div id="inspecting-data-with-data_overview" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> 1. Inspecting Data
+with <code>data_overview()</code></h2>
+<p>Begin by understanding your dataset’s structure, variable types, and
+missing values using <code>data_overview()</code>. This function returns
+a list containing dimensions, variable types, missing value summary, and
+a data preview.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># Overview of demographic data</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>ov <span class="ot">&lt;-</span> <span class="fu">data_overview</span>(demographic)</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>ov</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co"># Each of the elements</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="fu">print</span>(ov<span class="sc">$</span>dimensions)      <span class="co"># number of rows and columns</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="fu">print</span>(ov<span class="sc">$</span>variable_types)  <span class="co"># data types of each variable</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="fu">print</span>(ov<span class="sc">$</span>missing_values)  <span class="co"># count of missing values per column</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="fu">print</span>(ov<span class="sc">$</span>preview)         <span class="co"># a small preview of the data</span></span></code></pre></div>
+<p>This helps you quickly assess the dataset before any processing.</p>
+<p><br></p>
+</div>
+<div id="handling-missing-values-with-imput_missing" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> 2. Handling Missing
+Values with <code>imput_missing()</code></h2>
+<p><code>imput_missing()</code> replaces NA values in the dataset. You
+can specify a strategy like “mean”, “median”, “mode”, or provide a
+specific value. For example:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># Replace numeric NAs with column means</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>cleaned <span class="ot">&lt;-</span> <span class="fu">imput_missing</span>(icu, <span class="at">method =</span> <span class="fu">list</span>(ards_days <span class="sc">~</span> <span class="st">&quot;mean&quot;</span>))</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co"># Replace numeric NAs with a specific value (e.g., 0)</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>cleaned0 <span class="ot">&lt;-</span> <span class="fu">imput_missing</span>(icu, <span class="at">method =</span> <span class="fu">list</span>(ards_days <span class="sc">~</span> <span class="dv">0</span>))</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co"># Replace numeric NAs with column medians</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>cleaned_med <span class="ot">&lt;-</span> <span class="fu">imput_missing</span>(icu, <span class="fu">list</span>(<span class="fu">c</span>(uci_enter_days, ards_days) <span class="sc">~</span> <span class="st">&quot;mean&quot;</span>))</span></code></pre></div>
+<p>After running <code>imput_missing()</code>, the returned cleaned
+dataset has no missing values in the defined columns, according to the
+chosen strategy.</p>
+<p><br></p>
+</div>
+<div id="merging-multiple-tables-with-multi_join" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> 3. Merging Multiple
+Tables with <code>multi_join()</code></h2>
+<p>When working with related tables, <code>multi_join()</code> merges
+several data frames by a common key. You can perform different join
+types (<code>&quot;left&quot;</code>, <code>&quot;inner&quot;</code>, <code>&quot;right&quot;</code>,
+<code>&quot;full&quot;</code>). For example, suppose you have demographic, vital
+signs, and scores tables all keyed by <code>record_id</code>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;vital_signs&quot;</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;scores&quot;</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>joined <span class="ot">&lt;-</span> <span class="fu">multi_join</span>(</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>  <span class="fu">list</span>(demographic, vital_signs, scores),</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>  <span class="at">key =</span> <span class="st">&quot;record_id&quot;</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>  <span class="at">join_type =</span> <span class="st">&quot;left&quot;</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>)</span></code></pre></div>
+<p>This creates one combined data frame <code>joined</code> that
+includes all rows from <code>demographic</code> and matches information
+from <code>vital_signs</code> and <code>scores</code> by
+<code>record_id</code>. Change <code>join_type</code> as needed to
+control which rows are kept.</p>
+<p><br></p>
+</div>
+<div id="creating-summary-tables-with-stats_table" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> 4. Creating Summary
+Tables with <code>stats_table()</code></h2>
+<p>Use <code>stats_table()</code> to generate summary tables (leveraging
+the <code>gtsummary</code> package) for specified variables, optionally
+stratified by a grouping variable. The <code>statistic_type</code>
+parameter lets you choose mean/SD, median/IQR, or both. For example:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># Mean (SD) by group (e.g., by gender or cohort)</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>tbl1 <span class="ot">&lt;-</span> <span class="fu">stats_table</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  demographic,</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>  <span class="at">vars =</span> <span class="fu">c</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;weight&quot;</span>, <span class="st">&quot;height&quot;</span>),</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>  <span class="at">by =</span> <span class="st">&quot;sex&quot;</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>  <span class="at">statistic_type =</span> <span class="st">&quot;mean_sd&quot;</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>  <span class="at">pvalue =</span> <span class="cn">TRUE</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>)</span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="co"># Median [Q1; Q3] for all observations (no grouping)</span></span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a>tbl2 <span class="ot">&lt;-</span> <span class="fu">stats_table</span>(</span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a>  demographic,</span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a>  <span class="at">statistic_type =</span> <span class="st">&quot;median_iqr&quot;</span></span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a>)</span>
+<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a><span class="co"># Both mean (SD) and median [IQR] combined</span></span>
+<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a>tbl3 <span class="ot">&lt;-</span> <span class="fu">stats_table</span>(</span>
+<span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a>  demographic,</span>
+<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a>  <span class="at">statistic_type =</span> <span class="st">&quot;both&quot;</span></span>
+<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a>)</span></code></pre></div>
+<p>Each <code>tbl</code> object is a <strong>gtsummary</strong>-style
+table that you can print or export to reports. Include
+<code>pvalue = TRUE</code> to add p-values for group comparisons.</p>
+<p><br></p>
+</div>
+<div id="visualizing-data-with-multi_plot" class="section level2" number="4.5">
+<h2><span class="header-section-number">4.5</span> 5. Visualizing Data
+with <code>multi_plot()</code></h2>
+<p>Create common plot types quickly with <code>multi_plot()</code>. It
+supports histograms, density plots, boxplots, barplots, and spider
+(radar) charts. For instance:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co"># Histogram of age</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="fu">multi_plot</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>  demographic,</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>  <span class="at">x_var =</span> <span class="st">&quot;age&quot;</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>  <span class="at">plot_type =</span> <span class="st">&quot;histogram&quot;</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>  <span class="at">fill_color =</span> <span class="st">&quot;skyblue&quot;</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Distribution of Age&quot;</span></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>)</span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a><span class="co"># Boxplot of age by sex</span></span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a><span class="fu">multi_plot</span>(</span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a>  demographic,</span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a>  <span class="at">x_var =</span> <span class="st">&quot;sex&quot;</span>,</span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a>  <span class="at">y_var =</span> <span class="st">&quot;age&quot;</span>,</span>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a>  <span class="at">plot_type =</span> <span class="st">&quot;boxplot&quot;</span>,</span>
+<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a>  <span class="at">group =</span> <span class="st">&quot;sex&quot;</span>,</span>
+<span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Age by Sex&quot;</span></span>
+<span id="cb10-18"><a href="#cb10-18" tabindex="-1"></a>)</span>
+<span id="cb10-19"><a href="#cb10-19" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" tabindex="-1"></a><span class="co"># Spider plot of numeric variables (e.g., compare age, weight, height distributions)</span></span>
+<span id="cb10-21"><a href="#cb10-21" tabindex="-1"></a><span class="fu">multi_plot</span>(</span>
+<span id="cb10-22"><a href="#cb10-22" tabindex="-1"></a>  demographic,</span>
+<span id="cb10-23"><a href="#cb10-23" tabindex="-1"></a>  <span class="at">plot_type =</span> <span class="st">&quot;spider&quot;</span>,</span>
+<span id="cb10-24"><a href="#cb10-24" tabindex="-1"></a>  <span class="at">radar_var =</span> <span class="fu">c</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;weight&quot;</span>, <span class="st">&quot;height&quot;</span>),</span>
+<span id="cb10-25"><a href="#cb10-25" tabindex="-1"></a>  <span class="at">radar_color =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>)</span>
+<span id="cb10-26"><a href="#cb10-26" tabindex="-1"></a>)</span></code></pre></div>
+<p>Each call generates a plot (using <strong>ggplot2</strong> under the
+hood). Customize titles, colors, and variables as needed for your
+data.</p>
+<p><br></p>
+</div>
+<div id="exporting-data-with-export_data" class="section level2" number="4.6">
+<h2><span class="header-section-number">4.6</span> 6. Exporting Data
+with <code>export_data()</code></h2>
+<p>Finally, use <code>export_data()</code> to save your processed data
+to disk in various formats. Supported formats include CSV, Excel (XLSX),
+RDS, SPSS, Stata, and SAS:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># Export cleaned data to CSV</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="fu">export_data</span>(cleaned, <span class="at">format =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">path =</span> <span class="st">&quot;cleaned_demographic.csv&quot;</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="co"># Export joined data to Excel</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="fu">export_data</span>(joined, <span class="at">format =</span> <span class="st">&quot;xlsx&quot;</span>, <span class="at">path =</span> <span class="st">&quot;joined_data.xlsx&quot;</span>)</span></code></pre></div>
+<p>Specify the <code>path</code> including filename and extension; the
+function will write the file accordingly. You can also use
+<code>format = &quot;rds&quot;</code>, <code>&quot;sav&quot;</code> (SPSS),
+<code>&quot;dta&quot;</code> (Stata), or <code>&quot;sas7bdat&quot;</code> (SAS) as
+needed.</p>
+<p><br> <br></p>
+</div>
+</div>
+<div id="further-resources" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Further Resources</h1>
+<ul>
+<li><p><strong>Package Documentation:</strong> View the reference manual
+for detailed function descriptions (e.g., via
+<code>help(package = &quot;DIVINE&quot;)</code> or the CRAN/GitHub repository
+documentation).</p></li>
+<li><p><strong>In-R Help:</strong> Use <code>?DIVINE</code>,
+<code>?data_overview</code>, <code>?imput_missing</code>, etc., to
+access function-specific help pages.</p></li>
+</ul>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

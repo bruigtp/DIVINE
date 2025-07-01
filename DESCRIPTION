@@ -16,5 +16,18 @@ Suggests:
     rmarkdown
 VignetteBuilder: knitr
 Depends: 
-    R (>= 3.5)
+    R (>= 4.1)
 LazyData: true
+Imports: 
+    dplyr,
+    fmsb,
+    ggplot2,
+    gtsummary,
+    haven,
+    openxlsx,
+    purrr,
+    rlang,
+    scales,
+    stringr,
+    tibble,
+    tidyselect
