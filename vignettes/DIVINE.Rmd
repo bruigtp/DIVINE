@@ -262,6 +262,9 @@ Each `tbl` object is a **gtsummary**-style table that you can print or export to
 Create common plot types quickly with `multi_plot()`. It supports histograms, density plots, boxplots, barplots, and spider (radar) charts. For instance:
 
 ```{r}
+#| fig.alt: >
+#|   Different types of plots
+
 # Histogram of age
 multi_plot(
   demographic,
@@ -302,7 +305,7 @@ Finally, use `export_data()` to save your processed data to disk in various form
 
 ```{r}
 # Export cleaned data to CSV
-export_data(cleaned, format = "csv", path = "cleaned_demographic.csv")
+export_data(cleaned_default, format = "csv", path = "cleaned_demographic.csv")
 
 # Export joined data to Excel
 export_data(joined, format = "xlsx", path = "joined_data.xlsx")

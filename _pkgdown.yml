@@ -4,7 +4,7 @@ template:
   bootswatch: minty
   bslib:
     pkgdown-nav-height: 100px
-    primary: "#bb5b04"
-    link-color: "#fa8011"
-    link-hover-color: "#f8a85f"
-    dropdown-link-hover-bg: "#bb5b04"
+    primary: "#036C9E"
+    link-color: "#1C9DDC"
+    link-hover-color: "#5BCBFA"
+    dropdown-link-hover-bg: "#045D86"

@@ -1,9 +1,6 @@
-# DIVINE <img src="man/figures/logo.png" align="right" width="170" />
+# DIVINE <a href="https://bruigtp.github.io/DIVINE/"><img src="man/figures/logo.png" align="right" height="138" alt="DIVINE website" /></a>
 
-<!-- badges: start -->
-<!-- badges: end -->
-
-## Overview
+<br>
 
 DIVINE is an R package that provides 13 curated datasets and 6 intuitive data management functions to streamline epidemiological data workflows.
 
@@ -11,7 +8,10 @@ It is designed to support researchers in quickly accessing clean, structured dat
 
 Whether you're preparing a cohort for analysis or creating reports, DIVINE makes the process more efficient, transparent, and reproducible.
 
+<br>
+
 ## 📦 Installation
+<hr>
 
 Install the **development** version from [GitHub](https://github.com/bruigtp/DIVINE) with:
 
@@ -20,7 +20,10 @@ Install the **development** version from [GitHub](https://github.com/bruigtp/DIV
 pak::pak("bruigtp/DIVINE")
 ```
 
+<br>
+
 ## 🗂️ Included Datasets
+<hr>
 
 DIVINE includes 13 real-world structured datasets, commonly used in longitudinal and hospital-based research:
 
@@ -52,7 +55,10 @@ data("demographic")
 head(demographic)
 ```
 
+<br>
+
 ## ⚙️ Core Functions
+<hr>
 
 DIVINE includes 6 functions that follow a typical data preparation pipeline:
 
@@ -65,8 +71,11 @@ DIVINE includes 6 functions that follow a typical data preparation pipeline:
 | Visualize data        | `multi_plot()`    | Plot histograms, boxplots, densities, radar charts, etc.          |
 | Export results        | `export_data()`   | Export to CSV, Excel, RDS, SPSS, Stata, or SAS                    |
 
+<br>
+<br>
 
 ## 📖 Vignette
+<hr>
 
 Read the full walkthrough with all examples:
 
@@ -76,11 +85,17 @@ vignette("DIVINE")
 
 Or view online: https://bruigtp.github.io/DIVINE
 
+<br>
+
 ## 🤝 Contributing
+<hr>
 
 If you encounter a bug, please file an issue with a minimal reproducible example on [GitHub](https://github.com/bruigtp/DIVINE/issues).
 
+<br>
+
 ## About
+<hr>
 
 Package: DIVINE
 
