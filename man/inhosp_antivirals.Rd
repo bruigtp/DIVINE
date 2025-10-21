@@ -3,7 +3,7 @@
 \docType{data}
 \name{inhosp_antivirals}
 \alias{inhosp_antivirals}
-\title{DIVINE's table on antivirals received during hospital admission}
+\title{DIVINE's table on antivirals received during hospitalization}
 \format{
 A data frame with 5809 rows and 10 columns
 \describe{
@@ -23,7 +23,7 @@ A data frame with 5809 rows and 10 columns
 data(inhosp_antivirals)
 }
 \description{
-Information on antivirals received during hospital admission for patients included in the DIVINE cohort. Data was collected during hospital admission.
+Information on antivirals for patients included in the DIVINE cohort. Data was collected during hospitalization.
 }
 \references{
 Pallarès, N., Tebé, C., Abelenda-Alonso, G., Rombauts, A., Oriol, I., Simonetti, A. F., Rodríguez-Molinero, A., Izquierdo, E., Díaz-Brito, V., Molist, G., Gómez Melis, G., Carratalà, J., Videla, S., & MetroSud and Divine study groups (2023). Characteristics and Outcomes by Ceiling of Care of Subjects Hospitalized with COVID-19 During Four Waves of the Pandemic in a Metropolitan Area: A Multicenter Cohort Study. Infectious diseases and therapy, 12(1), 273–289. https://doi.org/10.1007/s40121-022-00705-w

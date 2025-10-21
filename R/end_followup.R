@@ -1,6 +1,6 @@
 #' DIVINE's table on closure data
 #'
-#' Information on closure data of patients included in the DIVINE cohort. Data was collected at the end of hospital admission.
+#' Information on closure data of patients included in the DIVINE cohort. Data was collected at the end of hospitalization.
 #'
 #' @docType data
 #' @keywords datasets

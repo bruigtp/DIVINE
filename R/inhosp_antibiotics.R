@@ -1,6 +1,6 @@
-#' DIVINE's table on antibiotics received during hospital admission
+#' DIVINE's table on antibiotics received during hospitalization
 #'
-#' Information on antibiotics received during hospital admission for patients included in the DIVINE cohort. Data was collected during hospital admission.
+#' Information on antibiotics received for patients included in the DIVINE cohort. Data was collected during hospitalization.
 #'
 #' @docType data
 #' @keywords datasets

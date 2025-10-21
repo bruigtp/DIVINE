@@ -8,15 +8,15 @@ multi_plot(
   data,
   x_var = NULL,
   y_var = NULL,
-  plot_type = "histogram",
+  plot_type = NULL,
   interactive = FALSE,
-  fill_color = "blue",
+  fill_color = "steelblue",
   color = "black",
   bin_width = NULL,
   group = NULL,
   facet_var = NULL,
-  radar_var = NULL,
-  radar_color = "blue",
+  z_var = NULL,
+  radar_color = "steelblue",
   radar_vlabels = NULL,
   radar_vlcex = 1,
   radar_ref_lev = "Yes",
@@ -43,7 +43,7 @@ multi_plot(
 \item{interactive}{Logical; if \code{TRUE}, returns a Plotly interactive plot
 (not available for spider/radar charts). Default: \code{FALSE}.}
 
-\item{fill_color}{Character; fill color for non‑grouped geoms (default \code{"blue"}).}
+\item{fill_color}{Character; fill color for non‑grouped geoms (default \code{"steelblue"}).}
 
 \item{color}{Character; outline/line color (default \code{"black"}).}
 
@@ -53,7 +53,7 @@ multi_plot(
 
 \item{facet_var}{Character; name of variable to facet by (optional).}
 
-\item{radar_var}{Character vector; names of numeric variables for spider plot (only for \code{"spider"}).}
+\item{z_var}{Character vector; names of numeric variables for spider plot (only for \code{"spider"}).}
 
 \item{radar_color}{Character or vector; border/fill color for spider chart (only for \code{"spider"}).}
 
@@ -89,38 +89,37 @@ heatmap, or spider (radar)—either as static ggplot2 objects or interactive Plo
 }
 \details{
 \itemize{
-\item \strong{Histogram:} requires \code{x_var}; uses \code{geom_histogram()}.
-\item \strong{Density:} requires \code{x_var}; uses \code{geom_density()}.
+\item \strong{Histogram:} requires \code{x_var}; uses \code{geom_histogram()}. Use for continuous numeric variables only.
+\item \strong{Density:} requires \code{x_var}; uses \code{geom_density()}. It should be numeric.
 \item \strong{Boxplot/Violin:} require both \code{x_var} and \code{y_var}; automatically groups by \code{x_var} or by \code{group} if provided, with dynamic dodge width.
-\item \strong{Barplot:} requires \code{x_var}; counts occurrences.
-\item \strong{Scatter:} requires both \code{x_var} and \code{y_var}; uses \code{geom_point()}.
-\item \strong{Heatmap:} requires both \code{x_var} and \code{y_var}. If both are numeric,
-uses \code{stat_bin2d()}; otherwise counts combinations and uses \code{geom_tile()}.
-\item \strong{Spider:} requires \code{radar_var}; uses \code{fmsb::radarchart()}, static only.
+\item \strong{Barplot:} requires \code{x_var}; counts occurrences. Use for categorical variables only.
+\item \strong{Scatter:} requires both \code{x_var} and \code{y_var}; uses \code{geom_point()}. Both variables must be numeric.
+\item \strong{Heatmap:} requires both \code{x_var} and \code{y_var}. Both variables must be categorical.
+\item \strong{Spider:} requires \code{z_var} (vector of variables); uses \code{fmsb::radarchart()}, static only.
 }
 }
 \examples{
 
 multi_plot(icu,
-  x_var = "uci_exit_days",
-  y_var = "ards_days",
+  x_var = "icu_enter_days",
+  y_var = "vent_mec_start_days",
   plot_type = "scatter",
-  fill_color = "darkred",
-  color = "blue",
-  title = "ICU exit vs ARDS days"
+  color = "darkred",
+  title = "ICU exit vs MV days"
 )
 
 multi_plot(
   comorbidities,
+  x_var = "hypertension",
+  y_var = "dyslipidemia",
   plot_type = "spider",
-  radar_var = c(
-    "hypertension", "dyslipidemia", "depression", "mild_kidney_disease", "ceiling_dico"
+  z_var = c(
+    "depression", "mild_kidney_disease", "ceiling_dico"
   ),
   radar_vlabels = stringr::str_to_sentence(
-    c("hypertension", "dyslipidemia", "depression", "mild_kidney_disease", "ceiling_dico"
-    )
+    c("hypertension", "dyslipidemia", "depression", "mild_kidney_disease", "ceiling_dico")
   ),
-  radar_color = "blue",
+  radar_color = "steelblue",
   radar_ref_lev = "Yes"
 )
 

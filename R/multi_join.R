@@ -10,12 +10,19 @@
 #' @importFrom dplyr left_join right_join inner_join full_join
 #' @importFrom purrr map
 #' @examples
-#' data1 <- data.frame(id = 1:3, x = c("A", "B", "C"))
-#' data2 <- data.frame(id = 2:4, y = c("D", "E", "F"))
-#' data3 <- data.frame(id = 3:5, z = c("G", "H", "I"))
-#' multi_join(list(data1, data2, data3), key = "id", join_type = "left")
+#' multi_join(
+#'   list(analytics, comorbidities),
+#'   join_type = "left"
+#' )
+#'
+#' multi_join(
+#'   list(analytics, comorbidities),
+#'   key = c("record_id", "covid_wave", "center"),
+#'   join_type = "left"
+#' )
+#'
 #' @export
-multi_join <- function(datasets, key = "record_id", join_type = "left") {
+multi_join <- function(datasets, key = c("record_id", "covid_wave", "center"), join_type = "left") {
   # Validate that datasets is a list of data frames
   if (!is.list(datasets) | !all(sapply(datasets, is.data.frame) | sapply(datasets, tibble::is_tibble))) {
     stop("The 'datasets' parameter must be a list of data frames.")
@@ -33,16 +40,33 @@ multi_join <- function(datasets, key = "record_id", join_type = "left") {
 
   # Validate the join type
   valid_join_types <- c("left", "right", "inner", "full")
+
   if (!(join_type %in% valid_join_types)) {
     stop(paste("Invalid join_type. Choose one of:", paste(valid_join_types, collapse = ", ")))
   }
 
+  # Explaining joining method
+  if (join_type %in% c("left", "right") & length(datasets) > 2) {
+    if (join_type == "left") {
+      message(sprintf(
+        "Performing a LEFT join on %d datasets: the first dataset defines the rows to keep, and subsequent datasets are joined sequentially.",
+        length(datasets)
+      ))
+    } else {
+      message(sprintf(
+        "Performing a RIGHT join on %d datasets: the last dataset defines the rows to keep, and previous datasets are joined sequentially.",
+        length(datasets)
+      ))
+    }
+  }
+
   # Select the appropriate join function
   join_fun <- switch(join_type,
-                     left = dplyr::left_join,
-                     right = dplyr::right_join,
-                     inner = dplyr::inner_join,
-                     full = dplyr::full_join)
+    left = dplyr::left_join,
+    right = dplyr::right_join,
+    inner = dplyr::inner_join,
+    full = dplyr::full_join
+  )
 
   # Perform the joins sequentially using Reduce
   result <- Reduce(function(x, y) {

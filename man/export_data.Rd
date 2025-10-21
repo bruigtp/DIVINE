@@ -4,20 +4,25 @@
 \alias{export_data}
 \title{Export Data to Various Formats}
 \usage{
-export_data(data = NULL, format = "xlsx", path = NULL)
+export_data(data = NULL, path = NULL, format = NULL)
 }
 \arguments{
 \item{data}{A dataframe or tibble to export.}
 
-\item{format}{A character string specifying the export format. Supported formats include: "xlsx", "csv", "rds", "txt", "sav", "dta" and "sas7bdat". Defaults to "xlsx".}
-
 \item{path}{A character string specifying the file path for the exported file.}
+
+\item{format}{Optional character string specifying the export format. Supported formats:
+"xlsx", "csv", "rds", "txt", "sav", "dta", "sas7bdat" (alias "xpt"). If NULL (default),
+the function infers the format from the \code{path} extension.}
 }
 \value{
 This function does not return a value. It writes the data to the specified file path and displays a success message upon completion.
 }
 \description{
-This function allows users to export a dataframe or tibble to multiple file formats, including Excel (.xlsx), CSV, RDS, text, SPSS (.sav), Stata (.dta), and Feather.
+Export a dataframe or tibble to multiple file formats. If \code{format} is NULL (default),
+the format will be inferred from the file extension of \code{path}. If \code{format} is provided
+and the extension in \code{path} does not match, the function will update the path to
+use the extension that corresponds to \code{format} and warn the user.
 }
 \details{
 Supported formats and their functionality are provided via the package dependencies:
@@ -33,16 +38,15 @@ Supported formats and their functionality are provided via the package dependenc
 }
 \examples{
 \dontrun{
-df <- data.frame(Name = c("Alice", "Bob"), Age = c(25, 30), Score = c(85.5, 90.0))
+df <- data.frame(Name = c("Alice", "Bob"), Age = c(25, 30))
 
-# Export to Excel
-export_data(data = df, format = "xlsx", path = "example.xlsx")
+# Infer format from path extension (no format argument)
+export_data(df, path = "example.xlsx")
+export_data(df, path = "example.csv")
 
-# Export to CSV
-export_data(data = df, format = "csv", path = "example.csv")
-
-# Export to SPSS
-export_data(data = df, format = "sav", path = "example.sav")
+# Explicit format (function will ensure path extension matches)
+export_data(df, format = "csv", path = "example")         # adds .csv
+export_data(df, format = "rds", path = "example.rds")
 }
 
 }

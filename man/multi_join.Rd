@@ -4,7 +4,11 @@
 \alias{multi_join}
 \title{Multi-Dataset Join Utility}
 \usage{
-multi_join(datasets, key = "record_id", join_type = "left")
+multi_join(
+  datasets,
+  key = c("record_id", "covid_wave", "center"),
+  join_type = "left"
+)
 }
 \arguments{
 \item{datasets}{A list of data frames to be joined.}
@@ -20,8 +24,15 @@ A single data frame containing the joined datasets.
 This function performs a sequential join of multiple datasets by a specified key column.
 }
 \examples{
-data1 <- data.frame(id = 1:3, x = c("A", "B", "C"))
-data2 <- data.frame(id = 2:4, y = c("D", "E", "F"))
-data3 <- data.frame(id = 3:5, z = c("G", "H", "I"))
-multi_join(list(data1, data2, data3), key = "id", join_type = "left")
+multi_join(
+  list(analytics, comorbidities),
+  join_type = "left"
+)
+
+multi_join(
+  list(analytics, comorbidities),
+  key = c("record_id", "covid_wave", "center"),
+  join_type = "left"
+)
+
 }

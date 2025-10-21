@@ -147,9 +147,9 @@ This helps you quickly assess the dataset before any processing.
 
 <br>
 
-## 2. Handling Missing Values with `imput_missing()`
+## 2. Handling Missing Values with `impute_missing()`
 
-The `imput_missing()` function lets you replace or remove missing values in a single operation. You provide a named list of formulas (`<selector> ~ <value>`), where `<selector>` can be any tidyselect expression (e.g. a column name, `starts_with()`, or `where(is.numeric)`) and `<value>` one of the following strategies:
+The `impute_missing()` function lets you replace or remove missing values in a single operation. You provide a named list of formulas (`<selector> ~ <value>`), where `<selector>` can be any tidyselect expression (e.g. a column name, `starts_with()`, or `where(is.numeric)`) and `<value>` one of the following strategies:
 
 - "mean" or "median" (numeric columns only)
 
@@ -163,22 +163,22 @@ You can also drop rows that are entirely `NA` by setting `all_na_rm = TRUE`.
 
 ```{r}
 # 1) Default: replace all numeric NAs with column means
-cleaned_default <- imput_missing(icu)
+cleaned_default <- impute_missing(icu)
 
 # 2) Single column strategies:
-#    - Mean for ards_days
-#    - Zero for uci_enter_days
-cleaned_mix <- imput_missing(
+#    - Mean for vent_mec_start_days
+#    - Zero for icu_enter_days
+cleaned_mix <- impute_missing(
   icu,
   method = list(
-    ards_days      ~ "mean",
-    uci_enter_days ~ 0
+    vent_mec_start_days ~ "mean",
+    icu_enter_days ~ 0
   )
 )
 
 # 3) Multiple columns at once:
 #    - Medians for any column ending in "_days"
-cleaned_days_median <- imput_missing(
+cleaned_days_median <- impute_missing(
   icu,
   method = list(starts_with(".*_days$") ~ "median")
 )
@@ -186,7 +186,7 @@ cleaned_days_median <- imput_missing(
 # 4) Factor/character imputation:
 #    - Fill gender with its most common level
 #    - Fill status with "Unknown"
-cleaned_char <- imput_missing(
+cleaned_char <- impute_missing(
   icu,
   method = list(
     covid_wave ~ "mode",
@@ -195,21 +195,21 @@ cleaned_char <- imput_missing(
 )
 
 # 5) Drop all-NA rows first, then impute numeric means
-cleaned_no_empty <- imput_missing(
+cleaned_no_empty <- impute_missing(
   icu,
   method    = list(where(is.numeric) ~ "mean"),
-  all_na_rm = TRUE
+  drop_all_na = TRUE
 )
 # ▶ message: Removed X rows where all values were NA
 ```
 
-After running `imput_missing()`, the returned cleaned dataset has no missing values in the defined columns, according to the chosen strategy. The dataset will maintain the same structure, unless the argument `all_na_rm` is set to `TRUE`.
+After running `impute_missing()`, the returned cleaned dataset has no missing values in the defined columns, according to the chosen strategy. The dataset will maintain the same structure, unless the argument `drop_all_na` is set to `TRUE`.
 
 <br>
 
 ## 3. Merging Multiple Tables with `multi_join()`
 
-When working with related tables, `multi_join()` merges several data frames by a common key. You can perform different join types (`"left"`, `"inner"`, `"right"`, `"full"`). For example, suppose you have demographic, vital signs, and scores tables all keyed by `record_id`:
+When working with related tables, `multi_join()` merges several data frames by a common key. You can perform different join types (`"left"`, `"inner"`, `"right"`, `"full"`). For example, suppose you have demographic, vital signs, and scores tables all sharing the default key variables of the package (`record_id`, `covid_wave`, `center`):
 
 ```{r}
 data("vital_signs")
@@ -217,7 +217,7 @@ data("scores")
 
 joined <- multi_join(
   list(demographic, vital_signs, scores),
-  key = "record_id",
+  key = c("record_id", "covid_wave", "center"),
   join_type = "left"
 )
 ```
@@ -287,8 +287,10 @@ multi_plot(
 # Spider plot of numeric variables (e.g., compare age, weight, height distributions)
 multi_plot(
   comorbidities,
+  x_var = "hypertension",
+  y_var = "dyslipidemia",
   plot_type = "spider",
-  radar_var = c("hypertension", "dyslipidemia", "depression", "mild_kidney_disease", "ceiling_dico"),
+  z_var = c("depression", "mild_kidney_disease", "ceiling_dico"),
   radar_vlabels = stringr::str_to_sentence(c("hypertension", "dyslipidemia", "depression", "mild_kidney_disease", "ceiling_dico")),
   radar_color = "blue",
   radar_ref_lev = "Yes"
@@ -320,4 +322,4 @@ Specify the `path` including filename and extension; the function will write the
 
 - **Package Documentation:** View the reference manual for detailed function descriptions (e.g., via `help(package = "DIVINE")` or the CRAN/GitHub repository documentation).
 
-- **In-R Help:** Use `?DIVINE`, `?data_overview`, `?imput_missing`, etc., to access function-specific help pages.
+- **In-R Help:** Use `?DIVINE`, `?data_overview`, `?impute_missing`, etc., to access function-specific help pages.

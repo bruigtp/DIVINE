@@ -65,7 +65,7 @@ DIVINE includes 6 functions that follow a typical data preparation pipeline:
 | Step                  | Function          | Description                                                       |
 | --------------------- | ----------------- | ----------------------------------------------------------------- |
 | Inspect data          | `data_overview()` | Get a high-level summary (structure, missingness, preview)        |
-| Handle missing values | `imput_missing()` | Replace `NA`s using mean, median, mode, or a fixed value          |
+| Handle missing values | `impute_missing()` | Replace `NA`s using mean, median, mode, or a fixed value          |
 | Merge datasets        | `multi_join()`    | Join multiple datasets by a common key                            |
 | Summarize tables      | `stats_table()`   | Create descriptive tables with gtsummary (mean/median + p-values) |
 | Visualize data        | `multi_plot()`    | Plot histograms, boxplots, densities, radar charts, etc.          |
@@ -99,7 +99,7 @@ If you encounter a bug, please file an issue with a minimal reproducible example
 
 Package: DIVINE
 
-Authors: Natàlia Pallarès, João Carmezim, Cristian Tebé.
+Authors: Natàlia Pallarès, João Carmezim, Pau Satorra, Cristian Tebé.
 
 Maintainer: João Carmezim
 

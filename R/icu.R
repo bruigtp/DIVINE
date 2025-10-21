@@ -1,6 +1,6 @@
 #' DIVINE's table on icu data
 #'
-#' Information on ICU data of patients included in the DIVINE cohort. Data was collected during hospital admission.
+#' Information on ICU data of patients included in the DIVINE cohort. Data was collected during hospitalization.
 #'
 #' @docType data
 #' @keywords datasets
@@ -13,16 +13,14 @@
 #'   \item{covid_wave:}{A factor with levels `Wave 1`, `Wave 2`, `Wave 3`, and `Wave 5`. COVID-19 wave.}
 #'   \item{center:}{A factor with levels `Hospital A`, `Hospital B`, `Hospital C`, `Hospital D`, and  `Hospital E`. Center of admission}
 #'   \item{icu:}{A factor with levels `No` and `Yes`. Was the patient admitted to the ICU?}
-#'   \item{uci_enter_days:}{Days from hospital admission to UCI admission.}
-#'   \item{uci_exit_days:}{Days from hospital admission to UCI discharge.}
+#'   \item{icu_enter_days:}{Days from hospital admission to ICU admission.}
+#'   \item{icu_exit_days:}{Days from hospital admission to ICU discharge.}
 #'   \item{vent_mec:}{A factor with levels `No` and `Yes`. Did the patient received invasive mechanical ventilation?}
 #'   \item{vent_mec_start_days:}{Days from hospital admission to start of invasive mechanical ventilation.}
-#'   \item{vent_mec_end_days:}{ Days from hospital admission to end of invasive mechanical ventilation.}
+#'   \item{vent_mec_end_days:}{Days from hospital admission to end of invasive mechanical ventilation.}
 #'   \item{vent_mec_no_inv:}{A factor with levels `No` and `Yes`. Did the patient received non-invasive mechanical ventilation?}
 #'   \item{vent_mec_no_inv_start_days:}{Days from hospital admission to start of non-invasive mechanical ventilation.}
 #'   \item{vent_mec_no_inv_end_days:}{Days from hospital admission to end of non-invasive mechanical ventilation.}
-#'   \item{ards:}{A factor with levels `No` and `Yes`. Did the patient develop acute respiratory distress syndrome (ARDS)?}
-#'   \item{ards_days:}{Days from hospital admission to development of acute respiratory distress syndrome (ARDS).}
 #' }
 #'
 #' @references

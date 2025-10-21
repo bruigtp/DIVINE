@@ -1,6 +1,6 @@
-#' DIVINE's table on treatments other than antivirals and antibiotics received during hospital admission
+#' DIVINE's table on other treatments received during hospitalization.
 #'
-#' Information on treatments other than antivirals and antibiotics received during hospital admission for patients included in the DIVINE cohort. Data was collected during hospital admission.
+#' Information on other treatments for patients included in the DIVINE cohort. Data was collected during hospitalization.
 #'
 #' @docType data
 #' @keywords datasets

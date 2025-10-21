@@ -1,6 +1,6 @@
 #' DIVINE's table on complications data
 #'
-#' Information on complications data of patients included in the DIVINE cohort. Data was collected during hospital admission.
+#' Information on complications data of patients included in the DIVINE cohort. Data was collected during hospitalization.
 #'
 #' @docType data
 #' @keywords datasets

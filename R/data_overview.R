@@ -17,9 +17,6 @@
 #' identifying any missing values or general characteristics of the data. It also allows
 #' users to customize how many rows they want to preview from the dataset.
 #'
-#' The summary statistics are calculated only for numeric variables and include basic
-#' statistics like minimum, maximum, mean, median, and the count of missing values (NA).
-#'
 #' @examples
 #' # Example usage with a simple data frame
 #' data <- data.frame(
