@@ -2,7 +2,7 @@
 
 <br>
 
-DIVINE is an R package that provides 13 curated datasets and 6 intuitive data management functions to streamline epidemiological data workflows.
+DIVINE is an R package that provides 14 curated datasets and 6 intuitive data management functions to streamline epidemiological data workflows.
 
 It is designed to support researchers in quickly accessing clean, structured data and applying essential cleaning, summarizing, visualization, and export operations with minimal effort.
 
