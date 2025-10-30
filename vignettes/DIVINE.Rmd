@@ -48,6 +48,8 @@ install.packages("DIVINE")
 ```{r eval=FALSE}
 # install.packages("devtools")
 devtools::install_github("bruigtp/DIVINE")
+
+pak::pak("bruigtp/DIVINE") # Alternative
 ```
 
 Once installed, load the package:
@@ -124,16 +126,17 @@ The following examples demonstrate a typical data management workflow using DIVI
 
 ## 1. Inspecting Data with `data_overview()`
 
-Begin by understanding your dataset’s structure, variable types, and missing values using `data_overview()`. This function returns a list containing dimensions, variable types, missing value summary, and a data preview.
+Start by understanding your dataset’s shape, variable types, and missingness with `data_overview()`. The function returns a named list containing the dataset dimensions, variable types, missing-value counts, and a small preview of the data (by default the first 6 rows).
 
 ```{r}
-# Overview of demographic data
+# Overview of your data frame
 ov <- data_overview(demographic)
 
+# Print the entire overview
 ov
 ```
 
-You can also access each element individually:
+You can also access each component individually:
 
 ```{r}
 # Each of the elements
@@ -149,7 +152,7 @@ This helps you quickly assess the dataset before any processing.
 
 ## 2. Handling Missing Values with `impute_missing()`
 
-The `impute_missing()` function lets you replace or remove missing values in a single operation. You provide a named list of formulas (`<selector> ~ <value>`), where `<selector>` can be any tidyselect expression (e.g. a column name, `starts_with()`, or `where(is.numeric)`) and `<value>` one of the following strategies:
+The `impute_missing()` function lets you replace missing values using a specific strategy. You provide a named list of formulas (`<selector> ~ <strategy>`), where `<selector>` can be any tidyselect expression (e.g. a column name, `starts_with()`, or `where(is.numeric)`) and `<strategy>` one of the following strategies:
 
 - "mean" or "median" (numeric columns only)
 
@@ -203,13 +206,13 @@ cleaned_no_empty <- impute_missing(
 # ▶ message: Removed X rows where all values were NA
 ```
 
-After running `impute_missing()`, the returned cleaned dataset has no missing values in the defined columns, according to the chosen strategy. The dataset will maintain the same structure, unless the argument `drop_all_na` is set to `TRUE`.
+After running `impute_missing()`, the returned dataset will have missing values replaced in the columns you specified according to your chosen strategies. The overall dataset structure (column names and types) is preserved where possible; only the number of rows will change if you set `drop_all_na = TRUE`.
 
 <br>
 
 ## 3. Merging Multiple Tables with `multi_join()`
 
-When working with related tables, `multi_join()` merges several data frames by a common key. You can perform different join types (`"left"`, `"inner"`, `"right"`, `"full"`). For example, suppose you have demographic, vital signs, and scores tables all sharing the default key variables of the package (`record_id`, `covid_wave`, `center`):
+When working with related tables, `multi_join()` combines several data frames into a single table by a common key. Choose the join behavior with `join_type = "left"`, `"inner"`, `"right"`, or `"full"` to control which rows are kept. For example, suppose you have demographic, vital signs, and scores tables all sharing the default key variables of the package (`record_id`, `covid_wave`, `center`):
 
 ```{r}
 data("vital_signs")
@@ -222,13 +225,20 @@ joined <- multi_join(
 )
 ```
 
-This creates one combined data frame `joined` that includes all rows from `demographic` and matches information from `vital_signs` and `scores` by `record_id`. Change `join_type` as needed to control which rows are kept.
+This creates one combined data frame `joined` that includes all rows from `demographic` and matches information from `vital_signs` and `scores` by `record_id`. Use `join_type` to decide whether unmatched rows from one or more tables should be retained.
 
 <br>
 
 ## 4. Creating Summary Tables with `stats_table()`
 
-Use `stats_table()` to generate summary tables (leveraging the `gtsummary` package) for specified variables, optionally stratified by a grouping variable. The `statistic_type` parameter lets you choose mean/SD, median/IQR, or both. For example:
+Use `stats_table()` to generate summary tables (leveraging the `gtsummary` package) for one or more variables, optionally stratified by a grouping variable. Use the `statistic_type` argument to select the summary:
+
+- "mean_sd" (show `mean (SD)` for numeric variables)
+
+- "median_iqr" (show `median [Q1; Q3]`)
+
+- "both" (include both `mean (SD)` and `median [Q1; Q3]` where applicable)
+
 
 ```{r}
 # Mean (SD) by group (e.g., by gender or cohort)
@@ -253,7 +263,7 @@ tbl3 <- stats_table(
 )
 ```
 
-Each `tbl` object is a **gtsummary**-style table that you can print or export to reports. Include `pvalue = TRUE` to add p-values for group comparisons.
+Each `tbl` object is a **gtsummary**-style table that you can print, refine or export to reports. Set `pvalue = TRUE` to add p-values for group comparisons, and consult the function documentation for options to format labels and missing-value displays.
 
 <br>
 
@@ -303,7 +313,7 @@ Each call generates a plot (using **ggplot2** under the hood). Customize titles,
 
 ## 6. Exporting Data with `export_data()`
 
-Finally, use `export_data()` to save your processed data to disk in various formats. Supported formats include CSV, Excel (XLSX), RDS, SPSS, Stata, and SAS:
+Finally, use `export_data()` to save your processed data to disk in various formats. Supported formats include CSV, XLSX, RDS, SPSS, Stata, and SAS:
 
 ```{r}
 # Export cleaned data to CSV
