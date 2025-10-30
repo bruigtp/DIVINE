@@ -25,7 +25,7 @@ pak::pak("bruigtp/DIVINE")
 ## 🗂️ Included Datasets
 <hr>
 
-DIVINE includes 13 real-world structured datasets, commonly used in longitudinal and hospital-based research:
+DIVINE includes 14 real-world structured datasets, commonly used in longitudinal and hospital-based research:
 
 - analytics
 - end_followup
