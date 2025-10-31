@@ -87,6 +87,13 @@ Or view online: https://bruigtp.github.io/DIVINE/articles/DIVINE.html
 
 <br>
 
+## Citation
+<hr>
+
+If you use these data, please cite the DIVINE study and the relevant publication:
+
+Pallarès N., Tebé C., Abelenda-Alonso G., Rombauts A., Oriol I., Simonetti A. F., Rodríguez-Molinero A., Izquierdo E., Díaz-Brito V., Molist G., Gómez Melis G., Carratalà J., Videla S., & MetroSud and DIVINE study groups (2023). *Characteristics and Outcomes by Ceiling of Care of Subjects Hospitalized with COVID-19 During Four Waves of the Pandemic in a Metropolitan Area: A Multicenter Cohort Study.* Infectious Diseases and Therapy, 12(1), 273–289. https://doi.org/10.1007/s40121-022-00705-w
+
 ## 🤝 Contributing
 <hr>
 
