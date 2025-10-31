@@ -2,8 +2,8 @@ Package: DIVINE
 Type: Package
 Title: Curated Datasets and Tools for Epidemiological Data Analysis
 Version: 0.1.0
-Authors@R: c(person("Natàlia", "Pallarès", email = "npallares@igtp.cat", role = c("aut", "cre")),
-             person("João", "Carmezim", email = "jcarmezim@igtp.cat", role = "aut"),
+Authors@R: c(person("Natàlia", "Pallarès", email = "npallares@igtp.cat", role = "aut"),
+             person("João", "Carmezim", email = "jcarmezim@igtp.cat", role = c("aut", "cre")),
              person("Pau", "Satorra", email = "psatorra@igtp.cat", role = "aut"),
              person("Lucia", "Blanc", email = "lblanc@igtp.cat", role = "aut"),
              person("Cristian", "Tebé", email = "ctebe@igtp.cat", role = "aut"))
@@ -13,7 +13,7 @@ License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
-URL: https: //bruigtp.github.io/DIVINE/
+URL: https: https://bruigtp.github.io/DIVINE/
 BugReports: https://github.com/bruigtp/DIVINE/issues
 Suggests: 
     knitr,
