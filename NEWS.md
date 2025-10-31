@@ -1,7 +1,7 @@
-# DIVINE 0.1.0 – First Release (2025-06-27)
+# DIVINE 0.1.0 – First Release
 
 * Initial CRAN submission.
 
-- 13 Sample Datasets
+- 14 Sample Datasets
 
 - 6 core functions
