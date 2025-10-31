@@ -83,7 +83,7 @@ Read the full walkthrough with all examples:
 vignette("DIVINE")
 ```
 
-Or view online: https://bruigtp.github.io/DIVINE
+Or view online: https://bruigtp.github.io/DIVINE/articles/DIVINE.html
 
 <br>
 
