@@ -5,7 +5,7 @@
 \alias{complications}
 \title{DIVINE's table on complications data}
 \format{
-A data frame with 5809 rows and 9 columns
+A data frame with 5813 rows and 9 columns
 \describe{
 \item{record_id:}{Identifier of each record. This information does not match the real data.}
 \item{covid_wave:}{A factor with levels \verb{Wave 1}, \verb{Wave 2}, \verb{Wave 3}, and \verb{Wave 5}. COVID-19 wave.}

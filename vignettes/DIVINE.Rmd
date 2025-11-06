@@ -54,7 +54,7 @@ pak::pak("bruigtp/DIVINE") # Alternative
 
 Once installed, load the package:
 
-```{r}
+```{r eval=FALSE}
 library(DIVINE)
 ```
 
@@ -67,7 +67,7 @@ This makes all datasets and functions available in your R session.
 
 Use the `data()` function to list available sample datasets. For example:
 
-```{r}
+```{r eval=FALSE}
 data(package = "DIVINE")
 ```
 
@@ -103,7 +103,7 @@ The DIVINE package includes the following datasets (each represents a data frame
 
 To obtain more information for a dataset:
 
-```{r}
+```{r eval=FALSE}
 ?demographic
 ```
 
@@ -315,7 +315,7 @@ Each call generates a plot (using **ggplot2** under the hood). Customize titles,
 
 Finally, use `export_data()` to save your processed data to disk in various formats. Supported formats include CSV, XLSX, RDS, SPSS, Stata, and SAS:
 
-```{r}
+```{rr eval=FALSE}
 # Export cleaned data to CSV
 export_data(cleaned_default, format = "csv", path = "cleaned_demographic.csv")
 

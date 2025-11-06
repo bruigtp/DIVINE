@@ -7,7 +7,7 @@
 #' @usage data(icu)
 #'
 #'
-#' @format A data frame with 5810 rows and 14 columns
+#' @format A data frame with 5813 rows and 12 columns
 #'  \describe{
 #'   \item{record_id:}{Identifier of each record. This information does not match the real data.}
 #'   \item{covid_wave:}{A factor with levels `Wave 1`, `Wave 2`, `Wave 3`, and `Wave 5`. COVID-19 wave.}
