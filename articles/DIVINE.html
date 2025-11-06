@@ -409,12 +409,11 @@ data.</p>
 <p>Finally, use <code><a href="../reference/export_data.html">export_data()</a></code> to save your processed data
 to disk in various formats. Supported formats include CSV, XLSX, RDS,
 SPSS, Stata, and SAS:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Export cleaned data to CSV</span></span>
+<pre class="rr"><code><span><span class="co"># Export cleaned data to CSV</span></span>
 <span><span class="fu"><a href="../reference/export_data.html">export_data</a></span><span class="op">(</span><span class="va">cleaned_default</span>, format <span class="op">=</span> <span class="st">"csv"</span>, path <span class="op">=</span> <span class="st">"cleaned_demographic.csv"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Export joined data to Excel</span></span>
-<span><span class="fu"><a href="../reference/export_data.html">export_data</a></span><span class="op">(</span><span class="va">joined</span>, format <span class="op">=</span> <span class="st">"xlsx"</span>, path <span class="op">=</span> <span class="st">"joined_data.xlsx"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/export_data.html">export_data</a></span><span class="op">(</span><span class="va">joined</span>, format <span class="op">=</span> <span class="st">"xlsx"</span>, path <span class="op">=</span> <span class="st">"joined_data.xlsx"</span><span class="op">)</span></span></code></pre>
 <p>Specify the <code>path</code> including filename and extension; the
 function will write the file accordingly. You can also use
 <code>format = "rds"</code>, <code>"sav"</code> (SPSS),
