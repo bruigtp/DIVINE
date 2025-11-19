@@ -1,0 +1,191 @@
+# DIVINE
+
+  
+
+DIVINE is an R package that provides 14 curated datasets and 6 intuitive
+data management functions to streamline epidemiological data workflows.
+
+It is designed to support researchers in quickly accessing clean,
+structured data and applying essential cleaning, summarizing,
+visualization, and export operations with minimal effort.
+
+Whether you’re preparing a cohort for analysis or creating reports,
+DIVINE makes the process more efficient, transparent, and reproducible.
+
+  
+
+## 📦 Installation
+
+------------------------------------------------------------------------
+
+Install the **development** version from
+[GitHub](https://github.com/bruigtp/DIVINE) with:
+
+``` r
+# install.packages("pak")
+pak::pak("bruigtp/DIVINE")
+```
+
+  
+
+## 🗂️ Included Datasets
+
+------------------------------------------------------------------------
+
+DIVINE includes 14 real-world structured datasets, commonly used in
+longitudinal and hospital-based research:
+
+- analytics
+- end_followup
+- complications
+- comorbidities
+- demographic
+- symptoms
+- scores
+- vital_signs
+- concomitant_medicat
+- inhosp_other_treatments
+- icu
+- vaccine
+- inhosp_antivirals
+- inhosp_antibiotics
+
+To list them inside R:
+
+``` r
+data(package = "DIVINE")
+```
+
+To load one:
+
+``` r
+data("demographic")
+head(demographic)
+```
+
+  
+
+## ⚙️ Core Functions
+
+------------------------------------------------------------------------
+
+DIVINE includes 6 functions that follow a typical data preparation
+pipeline:
+
+| Step                  | Function                                                                           | Description                                                       |
+|-----------------------|------------------------------------------------------------------------------------|-------------------------------------------------------------------|
+| Inspect data          | [`data_overview()`](https://bruigtp.github.io/DIVINE/reference/data_overview.md)   | Get a high-level summary (structure, missingness, preview)        |
+| Handle missing values | [`impute_missing()`](https://bruigtp.github.io/DIVINE/reference/impute_missing.md) | Replace `NA`s using mean, median, mode, or a fixed value          |
+| Merge datasets        | [`multi_join()`](https://bruigtp.github.io/DIVINE/reference/multi_join.md)         | Join multiple datasets by a common key                            |
+| Summarize tables      | [`stats_table()`](https://bruigtp.github.io/DIVINE/reference/stats_table.md)       | Create descriptive tables with gtsummary (mean/median + p-values) |
+| Visualize data        | [`multi_plot()`](https://bruigtp.github.io/DIVINE/reference/multi_plot.md)         | Plot histograms, boxplots, densities, radar charts, etc.          |
+| Export results        | [`export_data()`](https://bruigtp.github.io/DIVINE/reference/export_data.md)       | Export to CSV, Excel, RDS, SPSS, Stata, or SAS                    |
+
+  
+  
+
+## 📖 Vignette
+
+------------------------------------------------------------------------
+
+Read the full walkthrough with all examples:
+
+``` r
+vignette("DIVINE")
+```
+
+Or view online: <https://bruigtp.github.io/DIVINE/articles/DIVINE.html>
+
+  
+
+## Citation
+
+------------------------------------------------------------------------
+
+If you use these data, please cite the DIVINE study and the relevant
+publication:
+
+Pallarès N., Tebé C., Abelenda-Alonso G., Rombauts A., Oriol I.,
+Simonetti A. F., Rodríguez-Molinero A., Izquierdo E., Díaz-Brito V.,
+Molist G., Gómez Melis G., Carratalà J., Videla S., & MetroSud and
+DIVINE study groups (2023). *Characteristics and Outcomes by Ceiling of
+Care of Subjects Hospitalized with COVID-19 During Four Waves of the
+Pandemic in a Metropolitan Area: A Multicenter Cohort Study.* Infectious
+Diseases and Therapy, 12(1), 273–289.
+<https://doi.org/10.1007/s40121-022-00705-w>
+
+## 🤝 Contributing
+
+------------------------------------------------------------------------
+
+If you encounter a bug, please file an issue with a minimal reproducible
+example on [GitHub](https://github.com/bruigtp/DIVINE/issues).
+
+  
+
+## About
+
+------------------------------------------------------------------------
+
+Package: DIVINE
+
+Authors: Natàlia Pallarès, João Carmezim, Pau Satorra, Cristian Tebé.
+
+Maintainer: João Carmezim
+
+License: GPL (\>= 3)
+
+Encoding: UTF-8
+
+Depends: R (\>= 4.1.0)
+
+# Package index
+
+## All functions
+
+- [`analytics`](https://bruigtp.github.io/DIVINE/reference/analytics.md)
+  : DIVINE's table on laboratory data
+- [`comorbidities`](https://bruigtp.github.io/DIVINE/reference/comorbidities.md)
+  : DIVINE's table on information about comorbidities
+- [`complications`](https://bruigtp.github.io/DIVINE/reference/complications.md)
+  : DIVINE's table on complications data
+- [`concomitant_medication`](https://bruigtp.github.io/DIVINE/reference/concomitant_medication.md)
+  : DIVINE's table on treatments previous to hospital admission
+- [`data_overview()`](https://bruigtp.github.io/DIVINE/reference/data_overview.md)
+  : Data Overview Function
+- [`demographic`](https://bruigtp.github.io/DIVINE/reference/demographic.md)
+  : DIVINE's demographic table
+- [`end_followup`](https://bruigtp.github.io/DIVINE/reference/end_followup.md)
+  : DIVINE's table on closure data
+- [`export_data()`](https://bruigtp.github.io/DIVINE/reference/export_data.md)
+  : Export Data to Various Formats
+- [`icu`](https://bruigtp.github.io/DIVINE/reference/icu.md) : DIVINE's
+  table on icu data
+- [`impute_missing()`](https://bruigtp.github.io/DIVINE/reference/impute_missing.md)
+  : Replace Missing Values
+- [`inhosp_antibiotics`](https://bruigtp.github.io/DIVINE/reference/inhosp_antibiotics.md)
+  : DIVINE's table on antibiotics received during hospitalization
+- [`inhosp_antivirals`](https://bruigtp.github.io/DIVINE/reference/inhosp_antivirals.md)
+  : DIVINE's table on antivirals received during hospitalization
+- [`inhosp_other_treatments`](https://bruigtp.github.io/DIVINE/reference/inhosp_other_treatments.md)
+  : DIVINE's table on other treatments received during hospitalization.
+- [`multi_join()`](https://bruigtp.github.io/DIVINE/reference/multi_join.md)
+  : Multi-Dataset Join Utility
+- [`multi_plot()`](https://bruigtp.github.io/DIVINE/reference/multi_plot.md)
+  : multi_plot: Flexible Static or Interactive Plotting of Variables
+- [`scores`](https://bruigtp.github.io/DIVINE/reference/scores.md) :
+  DIVINE's table on severity scores at hospital admission
+- [`stats_table()`](https://bruigtp.github.io/DIVINE/reference/stats_table.md)
+  : Create Summary Table
+- [`symptoms`](https://bruigtp.github.io/DIVINE/reference/symptoms.md) :
+  DIVINE's symptoms table
+- [`vaccine`](https://bruigtp.github.io/DIVINE/reference/vaccine.md) :
+  DIVINE's vaccine table
+- [`vital_signs`](https://bruigtp.github.io/DIVINE/reference/vital_signs.md)
+  : DIVINE's table on vital signs
+
+# Articles
+
+### All vignettes
+
+- [DIVINE](https://bruigtp.github.io/DIVINE/articles/DIVINE.md):
