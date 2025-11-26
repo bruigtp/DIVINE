@@ -367,7 +367,16 @@ multi_plot <- function(data,
 
   # Interactive
   if (interactive && plot_type != "spider") {
-    return(plotly::ggplotly(p))
+
+    return(plotly::ggplotly(p) |>
+             plotly::layout(
+               autosize = TRUE,
+               hoverlabel = list(
+                 bgcolor = "lightyellow",
+                 bordercolor = "black",
+                 font = list(color = "black", size = 12)
+               )
+             ))
   }
 
   return(p)
