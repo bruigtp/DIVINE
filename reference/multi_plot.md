@@ -9,19 +9,19 @@ objects or interactive Plotly widgets.
 ``` r
 multi_plot(
   data,
-  x_var = NULL,
-  y_var = NULL,
+  x = NULL,
+  y = NULL,
   plot_type = NULL,
   interactive = FALSE,
   fill_color = "steelblue",
   color = "black",
   bin_width = NULL,
   group = NULL,
-  facet_var = NULL,
-  z_var = NULL,
+  facet = NULL,
+  radar = NULL,
   radar_color = "steelblue",
-  radar_vlabels = NULL,
-  radar_vlcex = 1,
+  radar_labels = NULL,
+  radar_cex = 1,
   radar_ref_lev = "Yes",
   title = NULL,
   x_lab = NULL,
@@ -40,14 +40,14 @@ multi_plot(
 
   A data frame or tibble containing your data.
 
-- x_var:
+- x:
 
-  Character; name of the variable for x‑axis (required for all plot
+  Character; name of the variable for x-axis (required for all plot
   types except spider).
 
-- y_var:
+- y:
 
-  Character; name of the variable for y‑axis (required for boxplot,
+  Character; name of the variable for y-axis (required for boxplot,
   violin, scatter, and heatmap).
 
 - plot_type:
@@ -62,7 +62,7 @@ multi_plot(
 
 - fill_color:
 
-  Character; fill color for non‑grouped geoms (default `"steelblue"`).
+  Character; fill color for non-grouped geoms (default `"steelblue"`).
 
 - color:
 
@@ -76,26 +76,26 @@ multi_plot(
 
   Character; name of grouping variable (optional).
 
-- facet_var:
+- facet:
 
   Character; name of variable to facet by (optional).
 
-- z_var:
+- radar:
 
-  Character vector; names of numeric variables for spider plot (only for
-  `"spider"`).
+  Character vector; names of exactly 5 variables for spider plot (only
+  for `"spider"`).
 
 - radar_color:
 
   Character or vector; border/fill color for spider chart (only for
   `"spider"`).
 
-- radar_vlabels:
+- radar_labels:
 
   Character or vector; names of the variables for spider chart (only for
   `"spider"`).
 
-- radar_vlcex:
+- radar_cex:
 
   Numeric; font size for variable labels in the spider chart (only for
   `"spider"`).
@@ -111,11 +111,11 @@ multi_plot(
 
 - x_lab:
 
-  Character; x‑axis label (defaults to `x_var`).
+  Character; x-axis label (defaults to `x`).
 
 - y_lab:
 
-  Character; y‑axis label (defaults to `y_var` or `"Count"`).
+  Character; y-axis label (defaults to `y` or `"Count"`).
 
 - legend_position:
 
@@ -124,7 +124,7 @@ multi_plot(
 
 - axis_text_angle:
 
-  Numeric; rotation angle (degrees) for x‑axis tick labels (default
+  Numeric; rotation angle (degrees) for x-axis tick labels (default
   `0`).
 
 - axis_text_size:
@@ -146,25 +146,25 @@ or a `plotly` object (if `interactive = TRUE`).
 
 ## Details
 
-- **Histogram:** requires `x_var`; uses `geom_histogram()`. Use for
+- **Histogram:** requires `x`; uses `geom_histogram()`. Use for
   continuous numeric variables only.
 
-- **Density:** requires `x_var`; uses `geom_density()`. It should be
+- **Density:** requires `x`; uses `geom_density()`. It should be
   numeric.
 
-- **Boxplot/Violin:** require both `x_var` and `y_var`; automatically
-  groups by `x_var` or by `group` if provided, with dynamic dodge width.
+- **Boxplot/Violin:** require both `x` and `y`; automatically groups by
+  `x` or by `group` if provided, with dynamic dodge width.
 
-- **Barplot:** requires `x_var`; counts occurrences. Use for categorical
+- **Barplot:** requires `x`; counts occurrences. Use for categorical
   variables only.
 
-- **Scatter:** requires both `x_var` and `y_var`; uses `geom_point()`.
-  Both variables must be numeric.
+- **Scatter:** requires both `x` and `y`; uses `geom_point()`. Both
+  variables must be numeric.
 
-- **Heatmap:** requires both `x_var` and `y_var`. Both variables must be
+- **Heatmap:** requires both `x` and `y`. Both variables must be
   categorical.
 
-- **Spider:** requires `z_var` (vector of variables); uses
+- **Spider:** requires `radar` (vector of variables); uses
   [`fmsb::radarchart()`](https://rdrr.io/pkg/fmsb/man/radarchart.html),
   static only.
 
@@ -172,8 +172,8 @@ or a `plotly` object (if `interactive = TRUE`).
 
 ``` r
 multi_plot(icu,
-  x_var = "icu_enter_days",
-  y_var = "vent_mec_start_days",
+  x = "icu_enter_days",
+  y = "vent_mec_start_days",
   plot_type = "scatter",
   color = "darkred",
   title = "ICU exit vs MV days"
@@ -184,17 +184,10 @@ multi_plot(icu,
 
 multi_plot(
   comorbidities,
-  x_var = "hypertension",
-  y_var = "dyslipidemia",
-  plot_type = "spider",
-  z_var = c(
-    "depression", "mild_kidney_disease", "ceiling_dico"
-  ),
-  radar_vlabels = stringr::str_to_sentence(
-    c("hypertension", "dyslipidemia", "depression", "mild_kidney_disease", "ceiling_dico")
-  ),
+  radar = c("hypertension", "dyslipidemia", "depression", "mild_kidney_disease", "dm"),
   radar_color = "steelblue",
-  radar_ref_lev = "Yes"
+  radar_ref_lev = "Yes",
+  plot_type = "spider"
 )
 
 ```

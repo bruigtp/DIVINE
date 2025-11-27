@@ -350,7 +350,7 @@ It supports histograms, density plots, boxplots, barplots, and spider
 # Histogram of age
 multi_plot(
   demographic,
-  x_var = "age",
+  x = "age",
   plot_type = "histogram",
   fill_color = "skyblue",
   title = "Distribution of Age"
@@ -365,8 +365,8 @@ plots](DIVINE_files/figure-html/unnamed-chunk-13-1.png)
 # Boxplot of age by sex
 multi_plot(
   demographic,
-  x_var = "sex",
-  y_var = "age",
+  x = "sex",
+  y = "age",
   plot_type = "boxplot",
   group = "sex",
   title = "Age by Sex"
@@ -381,13 +381,11 @@ plots](DIVINE_files/figure-html/unnamed-chunk-13-2.png)
 # Spider plot of numeric variables (e.g., compare age, weight, height distributions)
 multi_plot(
   comorbidities,
-  x_var = "hypertension",
-  y_var = "dyslipidemia",
-  plot_type = "spider",
-  z_var = c("depression", "mild_kidney_disease", "ceiling_dico"),
-  radar_vlabels = stringr::str_to_sentence(c("hypertension", "dyslipidemia", "depression", "mild_kidney_disease", "ceiling_dico")),
+  radar = c("hypertension", "dyslipidemia", "depression", "mild_kidney_disease", "dm"),
+  radar_labels = stringr::str_to_sentence(c("hypertension", "dyslipidemia", "depression", "mild_kidney_disease", "dm")),
   radar_color = "blue",
-  radar_ref_lev = "Yes"
+  radar_ref_lev = "Yes",
+  plot_type = "spider"
 )
 ```
 
@@ -404,7 +402,7 @@ titles, colors, and variables as needed for your data.
 Finally, use
 [`export_data()`](https://bruigtp.github.io/DIVINE/reference/export_data.md)
 to save your processed data to disk in various formats. Supported
-formats include CSV, XLSX, RDS, SPSS, Stata, and SAS:
+formats include CSV, XLSX, RDS, Rdata, SPSS, Stata, and SAS:
 
 ``` rr
 # Export cleaned data to CSV
@@ -415,8 +413,9 @@ export_data(joined, format = "xlsx", path = "joined_data.xlsx")
 ```
 
 Specify the `path` including filename and extension; the function will
-write the file accordingly. You can also use `format = "rds"`, `"sav"`
-(SPSS), `"dta"` (Stata), or `"sas7bdat"` (SAS) as needed.
+write the file accordingly. You can also use `format = "rds"` (R),
+`"Rdata"` (R), `"sav"` (SPSS), `"dta"` (Stata), or `"sas7bdat"` (SAS) as
+needed.
 
   
   
