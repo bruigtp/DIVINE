@@ -3,7 +3,7 @@ pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
   DIVINE: DIVINE.html
-last_built: 2025-12-11T07:29Z
+last_built: 2025-12-11T07:31Z
 urls:
   reference: https://bruigtp.github.io/DIVINE/reference
   article: https://bruigtp.github.io/DIVINE/articles
