@@ -102,7 +102,7 @@ imputes all numeric columns by their medians.</p></li>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Impute all numeric columns by their means:</span></span></span>
 <span class="r-in"><span><span class="fu">impute_missing</span><span class="op">(</span><span class="va">icu</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Imputation summary: Numeric variables imputed with mean; Categorical/Factor variables imputed with mode</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5,813 × 12</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5,813 × 14</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    record_id center     covid_wave icu   icu_enter_days icu_exit_days vent_mec</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>         1 Hospital C Wave 2     No              3.61          22.8 No      </span>
@@ -116,9 +116,9 @@ imputes all numeric columns by their medians.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>         9 Hospital C Wave 2     No              3.61          22.8 No      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>        10 Hospital E Wave 1     No              3.61          22.8 No      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 5,803 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 5 more variables: vent_mec_start_days &lt;dbl&gt;, vent_mec_end_days &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 7 more variables: vent_mec_start_days &lt;dbl&gt;, vent_mec_end_days &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   vent_mec_no_inv &lt;fct&gt;, vent_mec_no_inv_start_days &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   vent_mec_no_inv_end_days &lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   vent_mec_no_inv_end_days &lt;dbl&gt;, sev_pneum &lt;fct&gt;, sev_pneum_days &lt;dbl&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Impute numeric columns by median:</span></span></span>
 <span class="r-in"><span><span class="fu">impute_missing</span><span class="op">(</span></span></span>
@@ -126,7 +126,7 @@ imputes all numeric columns by their medians.</p></li>
 <span class="r-in"><span>  method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span> <span class="op">~</span> <span class="st">"median"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Imputation summary: Numeric variables imputed with median</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5,813 × 12</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5,813 × 14</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    record_id center     covid_wave icu   icu_enter_days icu_exit_days vent_mec</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>         1 Hospital C Wave 2     No                 3            16 No      </span>
@@ -140,9 +140,9 @@ imputes all numeric columns by their medians.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>         9 Hospital C Wave 2     No                 3            16 No      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>        10 Hospital E Wave 1     No                 3            16 No      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 5,803 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 5 more variables: vent_mec_start_days &lt;dbl&gt;, vent_mec_end_days &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 7 more variables: vent_mec_start_days &lt;dbl&gt;, vent_mec_end_days &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   vent_mec_no_inv &lt;fct&gt;, vent_mec_no_inv_start_days &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   vent_mec_no_inv_end_days &lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   vent_mec_no_inv_end_days &lt;dbl&gt;, sev_pneum &lt;fct&gt;, sev_pneum_days &lt;dbl&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Keep only rows where both "vent_mec_no_inv" and "vent_mec" are non-missing:</span></span></span>
 <span class="r-in"><span><span class="fu">impute_missing</span><span class="op">(</span></span></span>
@@ -151,7 +151,7 @@ imputes all numeric columns by their medians.</p></li>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Removed 6 rows that had NA in at least one of the 'filter_by' variables</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Imputation summary: Numeric variables imputed with mean; Categorical/Factor variables imputed with mode</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5,807 × 12</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5,807 × 14</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    record_id center     covid_wave icu   icu_enter_days icu_exit_days vent_mec</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>         1 Hospital C Wave 2     No              3.61          22.9 No      </span>
@@ -165,9 +165,9 @@ imputes all numeric columns by their medians.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>         9 Hospital C Wave 2     No              3.61          22.9 No      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>        10 Hospital E Wave 1     No              3.61          22.9 No      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 5,797 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 5 more variables: vent_mec_start_days &lt;dbl&gt;, vent_mec_end_days &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 7 more variables: vent_mec_start_days &lt;dbl&gt;, vent_mec_end_days &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   vent_mec_no_inv &lt;fct&gt;, vent_mec_no_inv_start_days &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   vent_mec_no_inv_end_days &lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   vent_mec_no_inv_end_days &lt;dbl&gt;, sev_pneum &lt;fct&gt;, sev_pneum_days &lt;dbl&gt;</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

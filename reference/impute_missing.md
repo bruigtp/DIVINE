@@ -92,7 +92,7 @@ You can remove rows that are entirely `NA` before imputation using
 # Impute all numeric columns by their means:
 impute_missing(icu)
 #> Imputation summary: Numeric variables imputed with mean; Categorical/Factor variables imputed with mode
-#> # A tibble: 5,813 × 12
+#> # A tibble: 5,813 × 14
 #>    record_id center     covid_wave icu   icu_enter_days icu_exit_days vent_mec
 #>        <int> <fct>      <fct>      <fct>          <dbl>         <dbl> <fct>   
 #>  1         1 Hospital C Wave 2     No              3.61          22.8 No      
@@ -106,9 +106,9 @@ impute_missing(icu)
 #>  9         9 Hospital C Wave 2     No              3.61          22.8 No      
 #> 10        10 Hospital E Wave 1     No              3.61          22.8 No      
 #> # ℹ 5,803 more rows
-#> # ℹ 5 more variables: vent_mec_start_days <dbl>, vent_mec_end_days <dbl>,
+#> # ℹ 7 more variables: vent_mec_start_days <dbl>, vent_mec_end_days <dbl>,
 #> #   vent_mec_no_inv <fct>, vent_mec_no_inv_start_days <dbl>,
-#> #   vent_mec_no_inv_end_days <dbl>
+#> #   vent_mec_no_inv_end_days <dbl>, sev_pneum <fct>, sev_pneum_days <dbl>
 
 # Impute numeric columns by median:
 impute_missing(
@@ -116,7 +116,7 @@ impute_missing(
   method = list(where(is.numeric) ~ "median")
 )
 #> Imputation summary: Numeric variables imputed with median
-#> # A tibble: 5,813 × 12
+#> # A tibble: 5,813 × 14
 #>    record_id center     covid_wave icu   icu_enter_days icu_exit_days vent_mec
 #>        <int> <fct>      <fct>      <fct>          <dbl>         <dbl> <fct>   
 #>  1         1 Hospital C Wave 2     No                 3            16 No      
@@ -130,9 +130,9 @@ impute_missing(
 #>  9         9 Hospital C Wave 2     No                 3            16 No      
 #> 10        10 Hospital E Wave 1     No                 3            16 No      
 #> # ℹ 5,803 more rows
-#> # ℹ 5 more variables: vent_mec_start_days <dbl>, vent_mec_end_days <dbl>,
+#> # ℹ 7 more variables: vent_mec_start_days <dbl>, vent_mec_end_days <dbl>,
 #> #   vent_mec_no_inv <fct>, vent_mec_no_inv_start_days <dbl>,
-#> #   vent_mec_no_inv_end_days <dbl>
+#> #   vent_mec_no_inv_end_days <dbl>, sev_pneum <fct>, sev_pneum_days <dbl>
 
 # Keep only rows where both "vent_mec_no_inv" and "vent_mec" are non-missing:
 impute_missing(
@@ -141,7 +141,7 @@ impute_missing(
 )
 #> Removed 6 rows that had NA in at least one of the 'filter_by' variables
 #> Imputation summary: Numeric variables imputed with mean; Categorical/Factor variables imputed with mode
-#> # A tibble: 5,807 × 12
+#> # A tibble: 5,807 × 14
 #>    record_id center     covid_wave icu   icu_enter_days icu_exit_days vent_mec
 #>        <int> <fct>      <fct>      <fct>          <dbl>         <dbl> <fct>   
 #>  1         1 Hospital C Wave 2     No              3.61          22.9 No      
@@ -155,7 +155,7 @@ impute_missing(
 #>  9         9 Hospital C Wave 2     No              3.61          22.9 No      
 #> 10        10 Hospital E Wave 1     No              3.61          22.9 No      
 #> # ℹ 5,797 more rows
-#> # ℹ 5 more variables: vent_mec_start_days <dbl>, vent_mec_end_days <dbl>,
+#> # ℹ 7 more variables: vent_mec_start_days <dbl>, vent_mec_end_days <dbl>,
 #> #   vent_mec_no_inv <fct>, vent_mec_no_inv_start_days <dbl>,
-#> #   vent_mec_no_inv_end_days <dbl>
+#> #   vent_mec_no_inv_end_days <dbl>, sev_pneum <fct>, sev_pneum_days <dbl>
 ```
