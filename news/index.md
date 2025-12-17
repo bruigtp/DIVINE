@@ -2,6 +2,8 @@
 
 ## DIVINE 0.1.1 – Minor changes
 
+CRAN release: 2025-12-11
+
 - Changes to arguments used in
   [`multi_plot()`](https://bruigtp.github.io/DIVINE/reference/multi_plot.md)
   and vignette.
