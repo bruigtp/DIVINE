@@ -1,5 +1,12 @@
 # DIVINE
 
+[![CRAN
+status](https://www.r-pkg.org/badges/version/REDCapDM)](https://cran.r-project.org/package=DIVINE)
+  
+[![](https://cranlogs.r-pkg.org/badges/REDCapDM)](https://cran.r-project.org/package=DIVINE)
+  
+[![](https://cranlogs.r-pkg.org/badges/grand-total/DIVINE)](https://cran.r-project.org/package=DIVINE)
+
   
 
 DIVINE is an R package that provides 14 curated datasets and 6 intuitive
