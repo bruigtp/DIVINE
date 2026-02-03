@@ -1,5 +1,8 @@
 # DIVINE <a href="https://bruigtp.github.io/DIVINE/"><img src="man/figures/logo.png" align="right" height="138" alt="DIVINE website" /></a>
 
+[![CRAN status](https://www.r-pkg.org/badges/version/REDCapDM)](https://cran.r-project.org/package=DIVINE) &#160;&#160;
+[![](https://cranlogs.r-pkg.org/badges/REDCapDM)](https://cran.r-project.org/package=DIVINE) &#160;&#160; [![](https://cranlogs.r-pkg.org/badges/grand-total/DIVINE)](https://cran.r-project.org/package=DIVINE)
+
 <br>
 
 DIVINE is an R package that provides 14 curated datasets and 6 intuitive data management functions to streamline epidemiological data workflows.
