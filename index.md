@@ -1,9 +1,9 @@
 # DIVINE
 
 [![CRAN
-status](https://www.r-pkg.org/badges/version/REDCapDM)](https://cran.r-project.org/package=DIVINE)
+status](https://www.r-pkg.org/badges/version/DIVINE)](https://cran.r-project.org/package=DIVINE)
   
-[![](https://cranlogs.r-pkg.org/badges/REDCapDM)](https://cran.r-project.org/package=DIVINE)
+[![](https://cranlogs.r-pkg.org/badges/DIVINE)](https://cran.r-project.org/package=DIVINE)
   
 [![](https://cranlogs.r-pkg.org/badges/grand-total/DIVINE)](https://cran.r-project.org/package=DIVINE)
 
