@@ -6,6 +6,7 @@ status](https://www.r-pkg.org/badges/version/DIVINE)](https://cran.r-project.org
 [![](https://cranlogs.r-pkg.org/badges/DIVINE)](https://cran.r-project.org/package=DIVINE)
   
 [![](https://cranlogs.r-pkg.org/badges/grand-total/DIVINE)](https://cran.r-project.org/package=DIVINE)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)
 
   
 

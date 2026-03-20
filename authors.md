@@ -15,7 +15,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/bruigtp/DIVINE/blob/v0.1.1/inst/CITATION)
+[`inst/CITATION`](https://github.com/bruigtp/DIVINE/blob/main/inst/CITATION)
 
 Pallarès N, Tebé C, Abelenda-Alonso G, Rombauts A, Oriol I, Simonetti
 AF, Rodríguez-Molinero A, Izquierdo E, Díaz-Brito V, Molist G, Melis GG,
