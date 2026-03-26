@@ -96,6 +96,13 @@ imputes all numeric columns by their medians.</p></li>
 <li><p>When imputing factors with a character constant, the constant is added as a new level if needed.</p></li>
 <li><p>When passing a custom function, it should return at least one value; if multiple values are returned, only the first is used (with a warning).</p></li>
 </ul></div>
+    <div class="section level2">
+    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
+    <p><strong>Caution:</strong> Single imputation methods may introduce bias or underestimate
+variability in your data. For more robust handling of missing data, consider
+multiple imputation approaches, such as those implemented in the
+<a href="https://cran.r-project.org/package=mice" class="external-link"><code>mice</code></a> package.</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>

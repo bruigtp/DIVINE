@@ -71,6 +71,15 @@ A data frame with 5813 rows and 12 columns
   Days from hospital admission to end of non-invasive mechanical
   ventilation.
 
+- sev_pneum::
+
+  A factor with levels `No` and `Yes`. Indicates whether the patient
+  presented severe pneumonia.
+
+- sev_pneum_days::
+
+  Days from hospital admission to end of severe pneumonia.
+
 ## References
 
 Pallarès, N., Tebé, C., Abelenda-Alonso, G., Rombauts, A., Oriol, I.,

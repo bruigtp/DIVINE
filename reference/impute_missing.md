@@ -86,6 +86,14 @@ You can remove rows that are entirely `NA` before imputation using
   if multiple values are returned, only the first is used (with a
   warning).
 
+## Note
+
+**Caution:** Single imputation methods may introduce bias or
+underestimate variability in your data. For more robust handling of
+missing data, consider multiple imputation approaches, such as those
+implemented in the [`mice`](https://cran.r-project.org/package=mice)
+package.
+
 ## Examples
 
 ``` r
