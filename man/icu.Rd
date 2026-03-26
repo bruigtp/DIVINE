@@ -19,6 +19,8 @@ A data frame with 5813 rows and 12 columns
 \item{vent_mec_no_inv:}{A factor with levels \code{No} and \code{Yes}. Did the patient received non-invasive mechanical ventilation?}
 \item{vent_mec_no_inv_start_days:}{Days from hospital admission to start of non-invasive mechanical ventilation.}
 \item{vent_mec_no_inv_end_days:}{Days from hospital admission to end of non-invasive mechanical ventilation.}
+\item{sev_pneum:}{A factor with levels \code{No} and \code{Yes}. Indicates whether the patient presented severe pneumonia.}
+\item{sev_pneum_days:}{Days from hospital admission to end of severe pneumonia.}
 }
 }
 \usage{

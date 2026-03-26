@@ -2,7 +2,7 @@ Package: DIVINE
 Type: Package
 Title: Curated Datasets and Tools for Epidemiological Data Analysis
 Version: 0.1.2
-Authors@R: c(person("Natàlia", "Pallarès", email = "npallares@igtp.cat", role = c("aut", "cre")),
+Authors@R: c(person("Natàlia", "Pallarès", email = "napallares@recerca.clinic.cat", role = c("aut", "cre")),
              person("João", "Carmezim", email = "jcarmezim@igtp.cat", role = "aut"),
              person("Pau", "Satorra", email = "psatorra@igtp.cat", role = "aut"),
              person("Lucia", "Blanc", email = "lblanc@igtp.cat", role = "aut"),
