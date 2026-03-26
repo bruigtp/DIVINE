@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">DIVINE</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -285,6 +285,13 @@ will have missing values replaced in the columns you specified according
 to your chosen strategies. The overall dataset structure (column names
 and types) is preserved where possible; only the number of rows will
 change if you set <code>drop_all_na = TRUE</code>.</p>
+<blockquote>
+<p>⚠️ <strong>Caution:</strong> Single imputation methods may introduce
+bias or underestimate variability in your data. For more robust handling
+of missing data, consider multiple imputation approaches, such as those
+implemented in the <a href="https://cran.r-project.org/package=mice" class="external-link"><code>mice</code></a>
+package.</p>
+</blockquote>
 <p><br></p>
 </div>
 <div class="section level3">
