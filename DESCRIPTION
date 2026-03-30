@@ -7,7 +7,7 @@ Authors@R: c(person("Natàlia", "Pallarès", email = "napallares@recerca.clinic.
              person("Pau", "Satorra", email = "psatorra@igtp.cat", role = "aut"),
              person("Lucia", "Blanc", email = "lblanc@igtp.cat", role = "aut"),
              person("Cristian", "Tebé", email = "ctebe@igtp.cat", role = "aut"))
-Maintainer: Natàlia Pallarès <npallares@igtp.cat>
+Maintainer: Natàlia Pallarès <napallares@recerca.clinic.cat>
 Description: Curated datasets and intuitive data management functions to streamline epidemiological data workflows. It is designed to support researchers in quickly accessing clean, structured data and applying essential cleaning, summarizing, visualization, and export operations with minimal effort. Whether you're preparing a cohort for analysis or creating reports, 'DIVINE' makes the process more efficient, transparent, and reproducible.
 License: GPL (>= 3)
 Encoding: UTF-8
