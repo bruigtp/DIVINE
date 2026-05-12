@@ -171,6 +171,7 @@ or a `plotly` object (if `interactive = TRUE`).
 ## Examples
 
 ``` r
+
 multi_plot(icu,
   x = "icu_enter_days",
   y = "vent_mec_start_days",

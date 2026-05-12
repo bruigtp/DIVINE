@@ -30,6 +30,7 @@ Install the **development** version from
 [GitHub](https://github.com/bruigtp/DIVINE) with:
 
 ``` r
+
 # install.packages("pak")
 pak::pak("bruigtp/DIVINE")
 ```
@@ -61,12 +62,14 @@ longitudinal and hospital-based research:
 To list them inside R:
 
 ``` r
+
 data(package = "DIVINE")
 ```
 
 To load one:
 
 ``` r
+
 data("demographic")
 head(demographic)
 ```
@@ -80,14 +83,14 @@ head(demographic)
 DIVINE includes 6 functions that follow a typical data preparation
 pipeline:
 
-| Step                  | Function                                                                           | Description                                                       |
-|-----------------------|------------------------------------------------------------------------------------|-------------------------------------------------------------------|
-| Inspect data          | [`data_overview()`](https://bruigtp.github.io/DIVINE/reference/data_overview.md)   | Get a high-level summary (structure, missingness, preview)        |
-| Handle missing values | [`impute_missing()`](https://bruigtp.github.io/DIVINE/reference/impute_missing.md) | Replace `NA`s using mean, median, mode, or a fixed value          |
-| Merge datasets        | [`multi_join()`](https://bruigtp.github.io/DIVINE/reference/multi_join.md)         | Join multiple datasets by a common key                            |
-| Summarize tables      | [`stats_table()`](https://bruigtp.github.io/DIVINE/reference/stats_table.md)       | Create descriptive tables with gtsummary (mean/median + p-values) |
-| Visualize data        | [`multi_plot()`](https://bruigtp.github.io/DIVINE/reference/multi_plot.md)         | Plot histograms, boxplots, densities, radar charts, etc.          |
-| Export results        | [`export_data()`](https://bruigtp.github.io/DIVINE/reference/export_data.md)       | Export to CSV, Excel, RDS, SPSS, Stata, or SAS                    |
+| Step | Function | Description |
+|----|----|----|
+| Inspect data | [`data_overview()`](https://bruigtp.github.io/DIVINE/reference/data_overview.md) | Get a high-level summary (structure, missingness, preview) |
+| Handle missing values | [`impute_missing()`](https://bruigtp.github.io/DIVINE/reference/impute_missing.md) | Replace `NA`s using mean, median, mode, or a fixed value |
+| Merge datasets | [`multi_join()`](https://bruigtp.github.io/DIVINE/reference/multi_join.md) | Join multiple datasets by a common key |
+| Summarize tables | [`stats_table()`](https://bruigtp.github.io/DIVINE/reference/stats_table.md) | Create descriptive tables with gtsummary (mean/median + p-values) |
+| Visualize data | [`multi_plot()`](https://bruigtp.github.io/DIVINE/reference/multi_plot.md) | Plot histograms, boxplots, densities, radar charts, etc. |
+| Export results | [`export_data()`](https://bruigtp.github.io/DIVINE/reference/export_data.md) | Export to CSV, Excel, RDS, SPSS, Stata, or SAS |
 
   
   
@@ -99,6 +102,7 @@ pipeline:
 Read the full walkthrough with all examples:
 
 ``` r
+
 vignette("DIVINE")
 ```
 

@@ -23,12 +23,14 @@ To install DIVINE, use the standard CRAN or GitHub approach:
 - CRAN:
 
 ``` r
+
 install.packages("DIVINE")
 ```
 
 - GitHub (development version):
 
 ``` r
+
 # install.packages("devtools")
 devtools::install_github("bruigtp/DIVINE")
 
@@ -38,6 +40,7 @@ pak::pak("bruigtp/DIVINE") # Alternative
 Once installed, load the package:
 
 ``` r
+
 library(DIVINE)
 ```
 
@@ -52,6 +55,7 @@ Use the [`data()`](https://rdrr.io/r/utils/data.html) function to list
 available sample datasets. For example:
 
 ``` r
+
 data(package = "DIVINE")
 ```
 
@@ -89,6 +93,7 @@ data frame):
 To obtain more information for a dataset:
 
 ``` r
+
 ?demographic
 ```
 
@@ -96,6 +101,7 @@ Load any dataset into your R environment using `data("dataset_name")`.
 For example, to load and preview the `demographic` dataset:
 
 ``` r
+
 data("demographic")
 head(demographic)
 #> # A tibble: 6 × 8
@@ -130,6 +136,7 @@ variable types, missing-value counts, and a small preview of the data
 (by default the first 6 rows).
 
 ``` r
+
 # Overview of your data frame
 ov <- data_overview(demographic)
 
@@ -165,6 +172,7 @@ ov
 You can also access each component individually:
 
 ``` r
+
 # Each of the elements
 ov$dimensions      # number of rows and columns
 #> [1] 5813    8
@@ -216,6 +224,7 @@ You can also drop rows that are entirely `NA` by setting
 `all_na_rm = TRUE`.
 
 ``` r
+
 # 1) Default: replace all numeric NAs with column means
 cleaned_default <- impute_missing(icu)
 
@@ -283,6 +292,7 @@ demographic, vital signs, and scores tables all sharing the default key
 variables of the package (`record_id`, `covid_wave`, `center`):
 
 ``` r
+
 data("vital_signs")
 data("scores")
 
@@ -316,6 +326,7 @@ or more variables, optionally stratified by a grouping variable. Use the
   applicable)
 
 ``` r
+
 # Mean (SD) by group (e.g., by gender or cohort)
 tbl1 <- stats_table(
   demographic,
@@ -353,6 +364,7 @@ It supports histograms, density plots, boxplots, barplots, and spider
 (radar) charts. For instance:
 
 ``` r
+
 # Histogram of age
 multi_plot(
   demographic,
@@ -367,6 +379,7 @@ multi_plot(
 plots](DIVINE_files/figure-html/unnamed-chunk-13-1.png)
 
 ``` r
+
 
 # Boxplot of age by sex
 multi_plot(
@@ -383,6 +396,7 @@ multi_plot(
 plots](DIVINE_files/figure-html/unnamed-chunk-13-2.png)
 
 ``` r
+
 
 # Spider plot of numeric variables (e.g., compare age, weight, height distributions)
 multi_plot(
