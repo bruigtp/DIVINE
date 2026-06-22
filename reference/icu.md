@@ -11,7 +11,7 @@ data(icu)
 
 ## Format
 
-A data frame with 5813 rows and 12 columns
+A data frame with 5813 rows and 14 columns
 
 - record_id::
 
@@ -71,14 +71,15 @@ A data frame with 5813 rows and 12 columns
   Days from hospital admission to end of non-invasive mechanical
   ventilation.
 
-- sev_pneum::
+- sev_pneum:
 
-  A factor with levels `No` and `Yes`. Indicates whether the patient
-  presented severe pneumonia.
+  A factor with levels `No` and `Yes`. Did the patient required a
+  sustained supply of oxygen therapy greater than FiO2 of 35% to
+  maintain oxygen saturation above 95%?
 
-- sev_pneum_days::
+- sev_pneum_days:
 
-  Days from hospital admission to end of severe pneumonia.
+  Days from hospital admission to development of severe pneumonia.
 
 ## References
 

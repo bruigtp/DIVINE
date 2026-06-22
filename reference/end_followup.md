@@ -32,23 +32,23 @@ A data frame with 5813 rows and 8 columns
 
   Days from hospital admission to clinical stability
 
+- exitus::
+
+  A factor with levels `No` and `Yes`. Did the patient die during
+  hospital admission?
+
 - exitus_days::
 
   Days from hospital admission to exitus
-
-- discharge_days::
-
-  Days from hospital admission to discharge
 
 - discharge::
 
   A factor with levels `No` and `Yes`. Was the patient discharge from
   the hospital?
 
-- exitus::
+- discharge_days::
 
-  A factor with levels `No` and `Yes`. Did the patient die during
-  hospital admission?
+  Days from hospital admission to discharge
 
 ## References
 
