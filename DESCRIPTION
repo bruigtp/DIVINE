@@ -12,7 +12,6 @@ Description: Curated datasets and intuitive data management functions to streaml
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
 URL: https://bruigtp.github.io/DIVINE/
 BugReports: https://github.com/bruigtp/DIVINE/issues
 Suggests: 
@@ -36,3 +35,4 @@ Imports:
     stringr,
     tibble,
     tidyselect
+Config/roxygen2/version: 8.0.0
