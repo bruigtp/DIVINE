@@ -10,7 +10,7 @@
 
 # DIVINE 0.1.2 – Minor changes
 
-- Changes to the column order of a couple of datasets and the creation of note to the `impute_missing()` function.
+- Changes to the column order of a couple of datasets and the creation of note to the `impute_mis
 
 # DIVINE 0.1.1 – Minor changes
 
