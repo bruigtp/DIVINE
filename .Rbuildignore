@@ -6,3 +6,5 @@
 ^pkgdown$
 ^\.github$
 ^\.vscode$
+^msm_data$
+^cran-comments\.md$

@@ -1,5 +1,7 @@
 # DIVINE 0.1.3
 
+* Updated citation information to the Scientific Data publication (doi:10.1038/s41597-026-07479-7).
+
 ## Bug fixes
 * `multi_plot()` now correctly maps `group` to the `color` aesthetic in 
   scatter plots, fixing a missing legend (#<número>).

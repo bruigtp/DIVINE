@@ -1,7 +1,7 @@
 # DIVINE <a href="https://bruigtp.github.io/DIVINE/"><img src="man/figures/logo.png" align="right" height="138" alt="DIVINE website" /></a>
 
 [![CRAN status](https://www.r-pkg.org/badges/version/DIVINE)](https://cran.r-project.org/package=DIVINE) &#160;&#160;
-[![](https://cranlogs.r-pkg.org/badges/DIVINE)](https://cran.r-project.org/package=DIVINE) &#160;&#160; [![](https://cranlogs.r-pkg.org/badges/grand-total/DIVINE)](https://cran.r-project.org/package=DIVINE)
+[![](https://cranlogs.r-pkg.org/badges/DIVINE)](https://CRAN.R-project.org/package=DIVINE) &#160;&#160; [![](https://cranlogs.r-pkg.org/badges/grand-total/DIVINE)](https://CRAN.R-project.org/package=DIVINE)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19130825.svg)](https://doi.org/10.5281/zenodo.19130825)
 
 <br>
