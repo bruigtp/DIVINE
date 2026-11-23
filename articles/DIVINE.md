@@ -381,14 +381,12 @@ plots](DIVINE_files/figure-html/unnamed-chunk-13-1.png)
 ``` r
 
 
-# Boxplot of age by sex
+# Boxplot of age for the full dataset
 multi_plot(
   demographic,
-  x = "sex",
   y = "age",
   plot_type = "boxplot",
-  group = "sex",
-  title = "Age by Sex"
+  title = "Overall Age Distribution"
 )
 ```
 
@@ -398,7 +396,26 @@ plots](DIVINE_files/figure-html/unnamed-chunk-13-2.png)
 ``` r
 
 
-# Spider plot of numeric variables (e.g., compare age, weight, height distributions)
+# Boxplot of age by sex with a custom palette
+multi_plot(
+  demographic,
+  x = "sex",
+  y = "age",
+  plot_type = "boxplot",
+  group = "sex",
+  group_palette = c(Male = "steelblue", Female = "darkorange"),
+  legend_position = "bottom",
+  title = "Age by Sex"
+)
+```
+
+![Different types of
+plots](DIVINE_files/figure-html/unnamed-chunk-13-3.png)
+
+``` r
+
+
+# Radar chart of comorbidity prevalence
 multi_plot(
   comorbidities,
   radar = c("hypertension", "dyslipidemia", "depression", "mild_kidney_disease", "dm"),
@@ -410,10 +427,11 @@ multi_plot(
 ```
 
 ![Different types of
-plots](DIVINE_files/figure-html/unnamed-chunk-13-3.png)
+plots](DIVINE_files/figure-html/unnamed-chunk-13-4.png)
 
-Each call generates a plot (using **ggplot2** under the hood). Customize
-titles, colors, and variables as needed for your data.
+Each call generates a plot (using **ggplot2** under the hood except
+radar charts which use **fmsb**). Customize titles, colors, and
+variables as needed for your data.
 
   
 

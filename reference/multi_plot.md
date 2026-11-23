@@ -30,7 +30,8 @@ multi_plot(
   axis_text_angle = 0,
   axis_text_size = 12,
   title_size = 14,
-  theme_custom = ggplot2::theme_minimal()
+  theme_custom = ggplot2::theme_minimal(),
+  group_palette = NULL
 )
 ```
 
@@ -42,8 +43,8 @@ multi_plot(
 
 - x:
 
-  Character; name of the variable for x-axis (required for all plot
-  types except spider).
+  Name of the variable for the x-axis as a character string. Optional
+  for boxplots and unused for spider charts.
 
 - y:
 
@@ -139,6 +140,14 @@ multi_plot(
 
   A ggplot2 theme object (default `theme_minimal()`).
 
+- group_palette:
+
+  Optional character vector of colors for `group`. Name the colors with
+  group values to assign them explicitly. An unnamed vector follows the
+  order of the group levels. With a palette, numeric group values are
+  treated as discrete levels. Available for histogram, density, boxplot,
+  barplot, violin, and scatter plots.
+
 ## Value
 
 A `ggplot` object (if `interactive = FALSE` or `plot_type = "spider"`)
@@ -152,8 +161,11 @@ or a `plotly` object (if `interactive = TRUE`).
 - **Density:** requires `x`; uses `geom_density()`. It should be
   numeric.
 
-- **Boxplot/Violin:** require both `x` and `y`; automatically groups by
-  `x` or by `group` if provided, with dynamic dodge width.
+- A **boxplot** requires a numeric `y`. Supply a categorical `x` to show
+  distributions by category, or omit it to draw a single box. With
+  `group` and no `x`, draws one box per group.
+
+- A **violin plot** requires a categorical `x` and a numeric `y`.
 
 - **Barplot:** requires `x`; counts occurrences. Use for categorical
   variables only.

@@ -65,7 +65,8 @@ heatmap, or spider (radar)—either as static ggplot2 objects or interactive Plo
 <span>  axis_text_angle <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  axis_text_size <span class="op">=</span> <span class="fl">12</span>,</span>
 <span>  title_size <span class="op">=</span> <span class="fl">14</span>,</span>
-<span>  theme_custom <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  theme_custom <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  group_palette <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -78,7 +79,7 @@ heatmap, or spider (radar)—either as static ggplot2 objects or interactive Plo
 
 
 <dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>Character; name of the variable for x-axis (required for all plot types except spider).</p></dd>
+<dd><p>Name of the variable for the x-axis as a character string. Optional for boxplots and unused for spider charts.</p></dd>
 
 
 <dt id="arg-y">y<a class="anchor" aria-label="anchor" href="#arg-y"></a></dt>
@@ -166,6 +167,10 @@ heatmap, or spider (radar)—either as static ggplot2 objects or interactive Plo
 <dt id="arg-theme-custom">theme_custom<a class="anchor" aria-label="anchor" href="#arg-theme-custom"></a></dt>
 <dd><p>A ggplot2 theme object (default <code>theme_minimal()</code>).</p></dd>
 
+
+<dt id="arg-group-palette">group_palette<a class="anchor" aria-label="anchor" href="#arg-group-palette"></a></dt>
+<dd><p>Optional character vector of colors for <code>group</code>. Name the colors with group values to assign them explicitly. An unnamed vector follows the order of the group levels. With a palette, numeric group values are treated as discrete levels. Available for histogram, density, boxplot, barplot, violin, and scatter plots.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -177,7 +182,8 @@ or a <code>plotly</code> object (if <code>interactive = TRUE</code>).</p>
 
 <ul><li><p><strong>Histogram:</strong> requires <code>x</code>; uses <code>geom_histogram()</code>. Use for continuous numeric variables only.</p></li>
 <li><p><strong>Density:</strong> requires <code>x</code>; uses <code>geom_density()</code>. It should be numeric.</p></li>
-<li><p><strong>Boxplot/Violin:</strong> require both <code>x</code> and <code>y</code>; automatically groups by <code>x</code> or by <code>group</code> if provided, with dynamic dodge width.</p></li>
+<li><p>A <strong>boxplot</strong> requires a numeric <code>y</code>. Supply a categorical <code>x</code> to show distributions by category, or omit it to draw a single box. With <code>group</code> and no <code>x</code>, draws one box per group.</p></li>
+<li><p>A <strong>violin plot</strong> requires a categorical <code>x</code> and a numeric <code>y</code>.</p></li>
 <li><p><strong>Barplot:</strong> requires <code>x</code>; counts occurrences. Use for categorical variables only.</p></li>
 <li><p><strong>Scatter:</strong> requires both <code>x</code> and <code>y</code>; uses <code>geom_point()</code>. Both variables must be numeric.</p></li>
 <li><p><strong>Heatmap:</strong> requires both <code>x</code> and <code>y</code>. Both variables must be categorical.</p></li>

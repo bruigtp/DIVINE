@@ -380,19 +380,31 @@ supports histograms, density plots, boxplots, barplots, and spider
 <p><img src="DIVINE_files/figure-html/unnamed-chunk-13-1.png" class="r-plt" alt="Different types of plots" width="700"></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="co"># Boxplot of age by sex</span></span>
+<span><span class="co"># Boxplot of age for the full dataset</span></span>
+<span><span class="fu"><a href="../reference/multi_plot.html">multi_plot</a></span><span class="op">(</span></span>
+<span>  <span class="va">demographic</span>,</span>
+<span>  y <span class="op">=</span> <span class="st">"age"</span>,</span>
+<span>  plot_type <span class="op">=</span> <span class="st">"boxplot"</span>,</span>
+<span>  title <span class="op">=</span> <span class="st">"Overall Age Distribution"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p><img src="DIVINE_files/figure-html/unnamed-chunk-13-2.png" class="r-plt" alt="Different types of plots" width="700"></p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="co"># Boxplot of age by sex with a custom palette</span></span>
 <span><span class="fu"><a href="../reference/multi_plot.html">multi_plot</a></span><span class="op">(</span></span>
 <span>  <span class="va">demographic</span>,</span>
 <span>  x <span class="op">=</span> <span class="st">"sex"</span>,</span>
 <span>  y <span class="op">=</span> <span class="st">"age"</span>,</span>
 <span>  plot_type <span class="op">=</span> <span class="st">"boxplot"</span>,</span>
 <span>  group <span class="op">=</span> <span class="st">"sex"</span>,</span>
+<span>  group_palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>Male <span class="op">=</span> <span class="st">"steelblue"</span>, Female <span class="op">=</span> <span class="st">"darkorange"</span><span class="op">)</span>,</span>
+<span>  legend_position <span class="op">=</span> <span class="st">"bottom"</span>,</span>
 <span>  title <span class="op">=</span> <span class="st">"Age by Sex"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="DIVINE_files/figure-html/unnamed-chunk-13-2.png" class="r-plt" alt="Different types of plots" width="700"></p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<p><img src="DIVINE_files/figure-html/unnamed-chunk-13-3.png" class="r-plt" alt="Different types of plots" width="700"></p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="co"># Spider plot of numeric variables (e.g., compare age, weight, height distributions)</span></span>
+<span><span class="co"># Radar chart of comorbidity prevalence</span></span>
 <span><span class="fu"><a href="../reference/multi_plot.html">multi_plot</a></span><span class="op">(</span></span>
 <span>  <span class="va">comorbidities</span>,</span>
 <span>  radar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hypertension"</span>, <span class="st">"dyslipidemia"</span>, <span class="st">"depression"</span>, <span class="st">"mild_kidney_disease"</span>, <span class="st">"dm"</span><span class="op">)</span>,</span>
@@ -401,10 +413,10 @@ supports histograms, density plots, boxplots, barplots, and spider
 <span>  radar_ref_lev <span class="op">=</span> <span class="st">"Yes"</span>,</span>
 <span>  plot_type <span class="op">=</span> <span class="st">"spider"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="DIVINE_files/figure-html/unnamed-chunk-13-3.png" class="r-plt" alt="Different types of plots" width="700"></p>
+<p><img src="DIVINE_files/figure-html/unnamed-chunk-13-4.png" class="r-plt" alt="Different types of plots" width="700"></p>
 <p>Each call generates a plot (using <strong>ggplot2</strong> under the
-hood). Customize titles, colors, and variables as needed for your
-data.</p>
+hood except radar charts which use <strong>fmsb</strong>). Customize
+titles, colors, and variables as needed for your data.</p>
 <p><br></p>
 </div>
 <div class="section level3">
