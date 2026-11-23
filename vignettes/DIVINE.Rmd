@@ -289,17 +289,27 @@ multi_plot(
   title = "Distribution of Age"
 )
 
-# Boxplot of age by sex
+# Boxplot of age for the full dataset
+multi_plot(
+  demographic,
+  y = "age",
+  plot_type = "boxplot",
+  title = "Overall Age Distribution"
+)
+
+# Boxplot of age by sex with a custom palette
 multi_plot(
   demographic,
   x = "sex",
   y = "age",
   plot_type = "boxplot",
   group = "sex",
+  group_palette = c(Male = "steelblue", Female = "darkorange"),
+  legend_position = "bottom",
   title = "Age by Sex"
 )
 
-# Spider plot of numeric variables (e.g., compare age, weight, height distributions)
+# Radar chart of comorbidity prevalence
 multi_plot(
   comorbidities,
   radar = c("hypertension", "dyslipidemia", "depression", "mild_kidney_disease", "dm"),
@@ -310,7 +320,7 @@ multi_plot(
 )
 ```
 
-Each call generates a plot (using **ggplot2** under the hood). Customize titles, colors, and variables as needed for your data.
+Each call generates a plot (using **ggplot2** under the hood except radar charts which use **fmsb**). Customize titles, colors, and variables as needed for your data.
 
 <br>
 

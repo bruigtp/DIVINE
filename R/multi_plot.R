@@ -4,7 +4,7 @@
 #' heatmap, or spider (radar)—either as static ggplot2 objects or interactive Plotly widgets.
 #'
 #' @param data A data frame or tibble containing your data.
-#' @param x Character; name of the variable for x-axis (required for all plot types except spider).
+#' @param x Name of the variable for the x-axis as a character string. Optional for boxplots and unused for spider charts.
 #' @param y Character; name of the variable for y-axis (required for boxplot, violin, scatter, and heatmap).
 #' @param plot_type Character; one of \code{"histogram"}, \code{"density"}, \code{"boxplot"},
 #'   \code{"barplot"}, \code{"violin"}, \code{"scatter"}, \code{"heatmap"}, or \code{"spider"}.
@@ -28,6 +28,7 @@
 #' @param axis_text_size Numeric; size of axis text in pts (default \code{12}).
 #' @param title_size Numeric; size of plot title text in pts (default \code{14}).
 #' @param theme_custom A ggplot2 theme object (default \code{theme_minimal()}).
+#' @param group_palette Optional character vector of colors for \code{group}. Name the colors with group values to assign them explicitly. An unnamed vector follows the order of the group levels. With a palette, numeric group values are treated as discrete levels. Available for histogram, density, boxplot, barplot, violin, and scatter plots.
 #'
 #' @return A \code{ggplot} object (if \code{interactive = FALSE} or \code{plot_type = "spider"})
 #'   or a \code{plotly} object (if \code{interactive = TRUE}).
@@ -35,7 +36,8 @@
 #' @details
 #' - \strong{Histogram:} requires \code{x}; uses \code{geom_histogram()}. Use for continuous numeric variables only.
 #' - \strong{Density:} requires \code{x}; uses \code{geom_density()}. It should be numeric.
-#' - \strong{Boxplot/Violin:} require both \code{x} and \code{y}; automatically groups by \code{x} or by \code{group} if provided, with dynamic dodge width.
+#' - A \strong{boxplot} requires a numeric \code{y}. Supply a categorical \code{x} to show distributions by category, or omit it to draw a single box. With \code{group} and no \code{x}, draws one box per group.
+#' - A \strong{violin plot} requires a categorical \code{x} and a numeric \code{y}.
 #' - \strong{Barplot:} requires \code{x}; counts occurrences. Use for categorical variables only.
 #' - \strong{Scatter:} requires both \code{x} and \code{y}; uses \code{geom_point()}. Both variables must be numeric.
 #' - \strong{Heatmap:} requires both \code{x} and \code{y}. Both variables must be categorical.
@@ -60,6 +62,7 @@
 #' )
 #'
 #' @importFrom rlang .data
+#' @importFrom rlang %||%
 #' @export
 
 multi_plot <- function(data,
@@ -84,7 +87,8 @@ multi_plot <- function(data,
                        axis_text_angle = 0,
                        axis_text_size = 12,
                        title_size = 14,
-                       theme_custom = ggplot2::theme_minimal()) {
+                       theme_custom = ggplot2::theme_minimal(),
+                       group_palette = NULL) {
   # Keep compatibility: internal names used elsewhere
   x_var <- x
   y_var <- y
@@ -128,6 +132,18 @@ multi_plot <- function(data,
     }
   }
 
+  if (!is.null(group_palette)) {
+    if (is.null(group) || plot_type %in% c("heatmap", "spider")) {
+      stop("'group_palette' requires 'group' and a plot type that uses it.",
+           call. = FALSE)
+    }
+    if (!is.character(group_palette) || !length(group_palette) ||
+        anyNA(group_palette)) {
+      stop("'group_palette' must be a non-empty character vector of colors.",
+           call. = FALSE)
+    }
+  }
+
   # Helper checks
   is_categorical <- function(x) {
     is.factor(x) || is.character(x)
@@ -157,11 +173,12 @@ multi_plot <- function(data,
     if (!is.null(y_var)) warning("y_var is ignored for barplots; counts of x_var are plotted.")
   }
 
-  if (plot_type %in% c("boxplot", "violin")) {
-    if (is.null(x_var) || is.null(y_var)) stop("x_var and y_var are required for boxplot/violin.", call. = FALSE)
-    if (!is_categorical(data[[x_var]])) stop(sprintf("For %s, x_var must be categorical/factor. '%s' is not categorical.", plot_type, x_var), call. = FALSE)
-    if (!is.numeric(data[[y_var]])) stop(sprintf("For %s, y_var must be numeric. '%s' is not numeric.", plot_type, y_var), call. = FALSE)
-  }
+if (plot_type %in% c("boxplot", "violin")) {
+  if (is.null(y_var)) {stop(sprintf("y_var is required for %s.", plot_type), call. = FALSE)}
+  if (plot_type == "violin" && is.null(x_var)) {stop("x_var is required for violin.", call. = FALSE)}
+  if (!is.null(x_var) && !is_categorical(data[[x_var]])) {stop(sprintf("For %s, x_var must be categorical. '%s' is not.", plot_type, x_var), call. = FALSE)}
+  if (!is.numeric(data[[y_var]])) {stop(sprintf("For %s, y_var must be numeric. '%s' is not.", plot_type, y_var), call. = FALSE)}
+}
 
   if (plot_type == "scatter") {
     if (is.null(x_var) || is.null(y_var)) stop("x_var and y_var are required for scatter.", call. = FALSE)
@@ -180,6 +197,10 @@ multi_plot <- function(data,
   x_sym <- if (!is.null(x_var)) rlang::sym(x_var) else NULL
   y_sym <- if (!is.null(y_var)) rlang::sym(y_var) else NULL
   group_sym <- if (!is.null(group)) rlang::sym(group) else NULL
+  if (!is.null(group_palette) && !is_categorical(data[[group]])) {
+    group_sym <- rlang::expr(factor(!!group_sym))
+  }
+  fixed_fill <- if (is.null(group_palette)) list(fill = fill_color)
   facet_sym <- if (!is.null(facet)) rlang::sym(facet) else NULL
 
   # Base plot
@@ -198,13 +219,14 @@ multi_plot <- function(data,
     bw <- bin_width %||% diff(range(data[[x_var]], na.rm = TRUE)) / 30
     aes_hist <- ggplot2::aes(x = !!x_sym)
     if (!is.null(group_sym)) aes_hist <- ggplot2::aes(x = !!x_sym, fill = !!group_sym)
-    p <- p + ggplot2::geom_histogram(aes_hist,
-                                     binwidth = bw,
-                                     fill     = fill_color,
-                                     color    = color,
-                                     alpha    = 0.7,
-                                     position = if (is.null(group_sym)) "identity" else "dodge"
-    )
+    p <- p + rlang::inject(ggplot2::geom_histogram(
+      aes_hist,
+      binwidth = bw,
+      !!!fixed_fill,
+      color = color,
+      alpha = 0.7,
+      position = if (is.null(group_sym)) "identity" else "dodge"
+    ))
     y_lab <- y_lab %||% "Count"
   } else if (plot_type == "density") {
 
@@ -213,29 +235,29 @@ multi_plot <- function(data,
     } else {
       ggplot2::aes(x = !!x_sym, fill = !!group_sym, group = !!group_sym)
     }
-    p <- p + ggplot2::geom_density(aes_den,
-                                   fill  = fill_color,
-                                   color = color,
-                                   alpha = 0.7
-    )
+    p <- p + rlang::inject(ggplot2::geom_density(
+      aes_den,
+      !!!fixed_fill,
+      color = color,
+      alpha = 0.7
+    ))
   } else if (plot_type %in% c("boxplot", "violin")) {
-    if (is.null(x_sym) || is.null(y_sym)) {
-      stop("x_var and y_var are required for boxplot/violin.", call. = FALSE)
-    }
+    
     geom_fn <- if (plot_type == "boxplot") ggplot2::geom_boxplot else ggplot2::geom_violin
 
+    x_mapping <- if (is.null(x_sym)) "" else x_sym
+
     if (is.null(group_sym)) {
-      p <- p + geom_fn(ggplot2::aes(x = !!x_sym, y = !!y_sym),
+      p <- p + geom_fn(ggplot2::aes(x = !!x_mapping, y = !!y_sym),
                        fill  = fill_color,
                        color = color,
                        alpha = 0.7,
                        width = 0.7
-      ) +
-        ggplot2::scale_x_discrete()
+      )
     } else {
       p <- p + geom_fn(
         ggplot2::aes(
-          x = !!x_sym,
+          x = !!x_mapping,
           y = !!y_sym,
           fill = !!group_sym,
           group = !!group_sym
@@ -243,9 +265,11 @@ multi_plot <- function(data,
         color = color,
         alpha = 0.7,
         width = 0.7
-      ) +
-        ggplot2::scale_x_discrete()
+      )
     }
+
+    p <- p + ggplot2::scale_x_discrete(breaks = if (is.null(x_var)) NULL else ggplot2::waiver())
+
   } else if (plot_type == "barplot") {
     if (is.null(x_sym)) stop("x_var is required for barplot.", call. = FALSE)
     aes_bar <- if (is.null(group_sym)) {
@@ -253,12 +277,13 @@ multi_plot <- function(data,
     } else {
       ggplot2::aes(x = !!x_sym, fill = !!group_sym)
     }
-    p <- p + ggplot2::geom_bar(aes_bar,
-                               fill     = fill_color,
-                               color    = color,
-                               alpha    = 0.7,
-                               position = if (is.null(group_sym)) "identity" else ggplot2::position_dodge2(preserve = "single")
-    )
+    p <- p + rlang::inject(ggplot2::geom_bar(
+      aes_bar,
+      !!!fixed_fill,
+      color = color,
+      alpha = 0.7,
+      position = if (is.null(group_sym)) "identity" else ggplot2::position_dodge2(preserve = "single")
+    ))
     y_lab <- y_lab %||% "Count"
   } else if (plot_type == "scatter") {
 
@@ -377,6 +402,14 @@ multi_plot <- function(data,
     }
 
     return(invisible(NULL))
+  }
+
+  if (!is.null(group_palette)) {
+    p <- p + if (plot_type == "scatter") {
+      ggplot2::scale_color_manual(name = group, values = group_palette)
+    } else {
+      ggplot2::scale_fill_manual(name = group, values = group_palette)
+    }
   }
 
   # Labels & facets

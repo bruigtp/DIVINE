@@ -20,7 +20,10 @@ importFrom(gtsummary,
   tbl_summary
 )
 importFrom(purrr,map)
-importFrom(rlang,.data)
+importFrom(rlang,
+  "%||%",
+  .data
+)
 importFrom(stats,
   na.omit,
   setNames

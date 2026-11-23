@@ -27,13 +27,14 @@ multi_plot(
   axis_text_angle = 0,
   axis_text_size = 12,
   title_size = 14,
-  theme_custom = ggplot2::theme_minimal()
+  theme_custom = ggplot2::theme_minimal(),
+  group_palette = NULL
 )
 }
 \arguments{
 \item{data}{A data frame or tibble containing your data.}
 
-\item{x}{Character; name of the variable for x-axis (required for all plot types except spider).}
+\item{x}{Name of the variable for the x-axis as a character string. Optional for boxplots and unused for spider charts.}
 
 \item{y}{Character; name of the variable for y-axis (required for boxplot, violin, scatter, and heatmap).}
 
@@ -78,6 +79,8 @@ multi_plot(
 \item{title_size}{Numeric; size of plot title text in pts (default \code{14}).}
 
 \item{theme_custom}{A ggplot2 theme object (default \code{theme_minimal()}).}
+
+\item{group_palette}{Optional character vector of colors for \code{group}. Name the colors with group values to assign them explicitly. An unnamed vector follows the order of the group levels. With a palette, numeric group values are treated as discrete levels. Available for histogram, density, boxplot, barplot, violin, and scatter plots.}
 }
 \value{
 A \code{ggplot} object (if \code{interactive = FALSE} or \code{plot_type = "spider"})
@@ -91,7 +94,8 @@ heatmap, or spider (radar)—either as static ggplot2 objects or interactive Plo
 \itemize{
 \item \strong{Histogram:} requires \code{x}; uses \code{geom_histogram()}. Use for continuous numeric variables only.
 \item \strong{Density:} requires \code{x}; uses \code{geom_density()}. It should be numeric.
-\item \strong{Boxplot/Violin:} require both \code{x} and \code{y}; automatically groups by \code{x} or by \code{group} if provided, with dynamic dodge width.
+\item A \strong{boxplot} requires a numeric \code{y}. Supply a categorical \code{x} to show distributions by category, or omit it to draw a single box. With \code{group} and no \code{x}, draws one box per group.
+\item A \strong{violin plot} requires a categorical \code{x} and a numeric \code{y}.
 \item \strong{Barplot:} requires \code{x}; counts occurrences. Use for categorical variables only.
 \item \strong{Scatter:} requires both \code{x} and \code{y}; uses \code{geom_point()}. Both variables must be numeric.
 \item \strong{Heatmap:} requires both \code{x} and \code{y}. Both variables must be categorical.
