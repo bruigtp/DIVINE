@@ -1,5 +1,7 @@
 # Changelog
 
+## DIVINE 0.1.4
+
 ## DIVINE 0.1.3
 
 CRAN release: 2026-11-11
