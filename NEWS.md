@@ -1,3 +1,5 @@
+# DIVINE 0.1.4
+
 # DIVINE 0.1.3
 
 * Updated citation information to the Scientific Data publication (doi:10.1038/s41597-026-07479-7).
